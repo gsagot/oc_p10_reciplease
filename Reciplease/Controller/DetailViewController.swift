@@ -59,7 +59,7 @@ class DetailViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         RecipeService.shared.getImage(url: currentImageName, completionHandler: { (success, error, result) in
             if success {
-                self.imageView.image = result
+                self.imageView.image = UIImage(data: result!)
             }
         })
        

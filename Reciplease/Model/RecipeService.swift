@@ -9,7 +9,6 @@ import Foundation
 import Alamofire
 
 
-
 class RecipeService {
     static let shared = RecipeService()
     
@@ -65,10 +64,25 @@ class RecipeService {
     }// end function
     
     
-    func getImage(url:String, completionHandler: @escaping ((Bool, String?, UIImage? ) -> Void)) {
+    func getImage(url:String, completionHandler: @escaping ((Bool, String?, Data? ) -> Void)) {
+        
         sessionManager.request(url).response { response in
-            completionHandler(true,nil,UIImage(data: response.data!, scale:1))
-         }
+            
+            switch response.result {
+            case .success(_):
+                completionHandler(true,nil,response.data)
+            
+            case .failure(let error):
+                switch error {
+                case .responseSerializationFailed(_):
+                    completionHandler(false,"An error occured, Please try again",nil)
+                default:
+                    completionHandler(false,"Session task failed, Please check connection",nil)
+                }// End error switch
+                
+            }// End response switch
+            
+         }// end closure
         
     }
           

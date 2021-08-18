@@ -37,6 +37,10 @@ class TableViewController: UIViewController, UITableViewDelegate, UITableViewDat
 
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        tableView.reloadData()
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return recipes.hits.count
     }
@@ -52,7 +56,7 @@ class TableViewController: UIViewController, UITableViewDelegate, UITableViewDat
         // Load image with Alamofire
         RecipeService.shared.getImage(url: recipes.hits[indexPath.row].recipe.image, completionHandler: { (success, error, result) in
             if success {
-                cell.backgroundView = UIImageView(image: result)
+                cell.backgroundView = UIImageView(image: UIImage(data: result!) )
                 cell.backgroundView?.contentMode = .scaleAspectFill
             }
         })

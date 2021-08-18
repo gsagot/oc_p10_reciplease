@@ -52,7 +52,6 @@ class SearchViewController: UIViewController {
     }
     
     
-    
     @objc func handleSearch(_ sender: UITapGestureRecognizer? = nil) {
         
         if let vc = storyboard?.instantiateViewController(withIdentifier: "Result") as? TableViewController {

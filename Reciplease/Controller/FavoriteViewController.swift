@@ -74,12 +74,14 @@ class FavoriteViewController: UIViewController, UITableViewDelegate, UITableView
         cell.title.text = recipes[indexPath.row].title
         
         // Load image with Alamofire
+        
         RecipeService.shared.getImage(url: recipes[indexPath.row].image!, completionHandler: { (success, error, result) in
             if success {
-                cell.backgroundView = UIImageView(image: result)
+                cell.backgroundView = UIImageView(image: UIImage(data: result!) )
                 cell.backgroundView?.contentMode = .scaleAspectFill
             }
         })
+ 
         // Cell is ready
         return cell
     }

@@ -1,0 +1,15 @@
+.DS_Store
+Reciplease/.DS_Store
+Reciplease/exports/.DS_Store
+Reciplease/Controller/.DS_Store
+Reciplease/View/.DS_Store
+Reciplease/Model/.DS_Store
+Reciplease/Model/Service/.DS_Store
+Reciplease/Model/Structure/.DS_Store
+Reciplease/Supporting Files/.DS_Store
+
+Reciplease/key.swift
+
+*.xcuserstate
+Reciplease.xcodeproj/project.xcworkspace/
+Reciplease.xcodeproj/xcuserdata/

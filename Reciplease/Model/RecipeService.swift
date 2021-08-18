@@ -10,7 +10,7 @@ import Alamofire
 
 
 class RecipeService {
-    static let shared = RecipeService()
+    static var shared = RecipeService()
     
     private var sessionManager:Session = {
       let configuration = URLSessionConfiguration.af.default
@@ -23,6 +23,10 @@ class RecipeService {
     
     init(session:Session) {
         self.sessionManager = session
+    }
+    
+    func start(){
+        RecipeService.shared = RecipeService()
     }
     
     func getRecipes(completionHandler: @escaping ((Bool, String?, Recipes? ) -> Void)) {
@@ -72,13 +76,8 @@ class RecipeService {
             case .success(_):
                 completionHandler(true,nil,response.data)
             
-            case .failure(let error):
-                switch error {
-                case .responseSerializationFailed(_):
-                    completionHandler(false,"An error occured, Please try again",nil)
-                default:
+            case .failure(_):
                     completionHandler(false,"Session task failed, Please check connection",nil)
-                }// End error switch
                 
             }// End response switch
             

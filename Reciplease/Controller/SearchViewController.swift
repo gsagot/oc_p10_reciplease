@@ -51,7 +51,9 @@ class SearchViewController: UIViewController {
         
     }
     
+    //MARK: - HANDLE USER INPUT
     
+    // Request and result in a tableView (next controler)
     @objc func handleSearch(_ sender: UITapGestureRecognizer? = nil) {
         
         if let vc = storyboard?.instantiateViewController(withIdentifier: "Result") as? TableViewController {
@@ -60,23 +62,29 @@ class SearchViewController: UIViewController {
         }
     }
     
+    // Add Ingredient(s)
     @objc func handleAdd(_ sender: UITapGestureRecognizer? = nil) {
         
         if querryIngredientText.text != nil {
+            
             let modifiedArray = querryIngredientText.text.map { $0.components(separatedBy: ",") }
             
             for i in 0..<modifiedArray!.count {
                 ingredientListText.text?.append(" - \(modifiedArray![i])\n" )
-            }
-             
-        }
-
-    }
+            }// End for
+            
+        }// End if
+        
+    }// End func
     
+    
+    // Hide Keyboard
     @objc func handleTap(_ sender: UITapGestureRecognizer? = nil) {
         querryIngredientText.resignFirstResponder()
 
     }
+    
+    //MARK: - CUSTOM NAVIGATIONBAR
     
     func customizeNavigationItems() {
         // Attempt to customize tabBar controller...

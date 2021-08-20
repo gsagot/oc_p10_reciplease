@@ -11,14 +11,15 @@ class DetailViewController: UIViewController {
     
     @IBOutlet var imageView: UIImageView!
     
-    var selectedRecipe:Hits!
-    
     var currentImageName:String!
     var currentTitle:String!
     var ingredientLines:[String]!
+    var isFavorite:Bool!
     
     var ingredientText:UITextView!
     var titleLabel:UITextField!
+    
+    //MARK: - LAYOUT
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -52,54 +53,44 @@ class DetailViewController: UIViewController {
         
     }
     
+    //MARK: - HANDLE USER INPUT
+    
     @objc func handleAddFavorite(_ sender: UITapGestureRecognizer? = nil) {
-        saveRecipeToFavorite()
+        FavoriteRecipe.saveRecipeToFavorite(title: titleLabel.text!, image: currentImageName!, ingredients: ingredientLines)
+        isFavorite = true
+        customizeNavigationItems()
     }
+    
+    @objc func handleDeleteFromFavorite(_ sender: UITapGestureRecognizer? = nil) {
+        FavoriteRecipe.deleteRecipe(title: currentTitle)
+        isFavorite = false
+        customizeNavigationItems()
+    }
+    
+    //MARK: - RESET TEXT AND IMAGE
     
     override func viewWillAppear(_ animated: Bool) {
+        
+        // Image...
         RecipeService.shared.getImage(url: currentImageName, completionHandler: { (success, error, result) in
-            if success {
-                self.imageView.image = UIImage(data: result!)
-            }
+            if success { self.imageView.image = UIImage(data: result!)}
         })
-       
-        ingredientText.text = ""
-        
-        for i in 0..<ingredientLines.count {
-            ingredientText.text?.append("\(ingredientLines[i])\n" )
-        
-        }
-         
-        
+    
+        // Title ...
         titleLabel.text = currentTitle
+        
+        // All Ingredients...
+        ingredientText.text = ""
+        for i in 0..<ingredientLines.count { ingredientText.text?.append("\(ingredientLines[i])\n" ) }
         
     }
     
-    func saveRecipeToFavorite() {
-        // Create object for recipe
-        let recipe = FavoriteRecipe(context: AppDelegate.viewContext)
-     
-        recipe.title = titleLabel.text
-        recipe.image = currentImageName
+    
+}
 
-        
-        // Create object for ingredients
-        let items:[String] = ingredientLines
-         
-        for i in 0..<items.count {
-            let ingredient = Ingredient(context: AppDelegate.viewContext)
-            ingredient.name = ingredientLines[i]
-            ingredient.recipe = recipe
-            //ingredient.setPrimitiveValue(NSDate(), forKey: "createdAt")
-            ingredient.awakeFromInsert()
-        }
- 
-        // Save context
-        guard ((try? AppDelegate.viewContext.save()) != nil) else {
-            print ("An error occured please try again... ")
-            return
-        }
-    }
+extension DetailViewController {
+    
+    //MARK: - CUSTOM NAVIGATIONBAR
     
     func customizeNavigationItems() {
         // Attempt to customize navigation controller...
@@ -107,13 +98,22 @@ class DetailViewController: UIViewController {
         self.navigationController!.navigationBar.titleTextAttributes =
             [.foregroundColor: UIColor.white, .font: UIFont.init(name: "Chalkduster", size: 18)!]
         
-        let addFavoriteButton = UIButton(type: .system)
-        addFavoriteButton.setImage(UIImage(systemName: "star.fill"), for: .normal)
-        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: addFavoriteButton)
+        let favoriteButton = UIButton(type: .system)
+        if isFavorite {
+            favoriteButton.setImage(UIImage(systemName: "star.fill"), for: .normal)
+            let deleteFromFavorite = UITapGestureRecognizer(target: self, action: #selector(self.handleDeleteFromFavorite(_:)))
+            favoriteButton.addGestureRecognizer(deleteFromFavorite)
+        }
+        else {
+            favoriteButton.setImage(UIImage(systemName: "star"), for: .normal)
+            let addFavorite = UITapGestureRecognizer(target: self, action: #selector(self.handleAddFavorite(_:)))
+            favoriteButton.addGestureRecognizer(addFavorite)
+            
+        }
+
+        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: favoriteButton)
         
-        let addFavorite = UITapGestureRecognizer(target: self, action: #selector(self.handleAddFavorite(_:)))
-        addFavoriteButton.addGestureRecognizer(addFavorite)
+  
     }
     
-
 }

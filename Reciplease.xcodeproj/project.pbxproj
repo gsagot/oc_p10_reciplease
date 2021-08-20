@@ -10,6 +10,7 @@
 		CA00AE4D26CCFFF300D47685 /* Ingredient.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA00AE4C26CCFFF300D47685 /* Ingredient.swift */; };
 		CA00AE4F26CD05CA00D47685 /* Key.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA00AE4E26CD05CA00D47685 /* Key.swift */; };
 		CA025B7F26CD3959008551EA /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = CA025B7E26CD3959008551EA /* Alamofire */; };
+		CA132C1126D019AF00AC11FA /* FavoriteRecipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA132C1026D019AF00AC11FA /* FavoriteRecipe.swift */; };
 		CA327B7826BEF28100B6EBE5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA327B7726BEF28100B6EBE5 /* AppDelegate.swift */; };
 		CA327B7A26BEF28100B6EBE5 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA327B7926BEF28100B6EBE5 /* SceneDelegate.swift */; };
 		CA327B7C26BEF28100B6EBE5 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA327B7B26BEF28100B6EBE5 /* TableViewController.swift */; };
@@ -43,6 +44,7 @@
 /* Begin PBXFileReference section */
 		CA00AE4C26CCFFF300D47685 /* Ingredient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ingredient.swift; sourceTree = "<group>"; };
 		CA00AE4E26CD05CA00D47685 /* Key.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Key.swift; sourceTree = "<group>"; };
+		CA132C1026D019AF00AC11FA /* FavoriteRecipe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteRecipe.swift; sourceTree = "<group>"; };
 		CA327B7426BEF28100B6EBE5 /* Reciplease.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Reciplease.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA327B7726BEF28100B6EBE5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CA327B7926BEF28100B6EBE5 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -123,6 +125,7 @@
 				CA327B8F26BF1D5B00B6EBE5 /* RecipeService.swift */,
 				CA49463826C2573D0069CD5C /* Reciplease.xcdatamodeld */,
 				CA00AE4C26CCFFF300D47685 /* Ingredient.swift */,
+				CA132C1026D019AF00AC11FA /* FavoriteRecipe.swift */,
 				CA327B9126BF1EB800B6EBE5 /* Recipes.swift */,
 				CA327B9326BF2B8500B6EBE5 /* Edamam.json */,
 			);
@@ -289,6 +292,7 @@
 				CA327B7826BEF28100B6EBE5 /* AppDelegate.swift in Sources */,
 				CA327B7A26BEF28100B6EBE5 /* SceneDelegate.swift in Sources */,
 				CA327B9026BF1D5B00B6EBE5 /* RecipeService.swift in Sources */,
+				CA132C1126D019AF00AC11FA /* FavoriteRecipe.swift in Sources */,
 				CA327B9226BF1EB800B6EBE5 /* Recipes.swift in Sources */,
 				CA327B9A26C1226500B6EBE5 /* DetailViewController.swift in Sources */,
 				CA00AE4D26CCFFF300D47685 /* Ingredient.swift in Sources */,

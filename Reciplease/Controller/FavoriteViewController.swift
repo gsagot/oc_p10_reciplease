@@ -9,13 +9,14 @@ import UIKit
 
 import CoreData
 
-class FavoriteViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class FavoriteViewController: UIViewController, UITableViewDelegate {
     
     var recipes:[FavoriteRecipe]!
     var ingredients:[Ingredient]!
     
     @IBOutlet var tableView: UITableView!
     
+    //MARK: - LAYOUT
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,7 +24,7 @@ class FavoriteViewController: UIViewController, UITableViewDelegate, UITableView
         
         customizeNavigationItems()
 
-        //deleteCoreDataItems ()
+        // FavoriteRecipe.deleteAllCoreDataItems ()
 
         // delegate things ...
         tableView.delegate = self
@@ -31,32 +32,30 @@ class FavoriteViewController: UIViewController, UITableViewDelegate, UITableView
 
     }
     
+    //MARK: - RESET
+    
     override func viewWillAppear(_ animated: Bool) {
-        // Request recipes
-        let requestRecipe: NSFetchRequest<FavoriteRecipe> = FavoriteRecipe.fetchRequest()
-        guard let resultRecipe = try? AppDelegate.viewContext.fetch(requestRecipe) else {
-            return
-        }
         
-        /*
-        // Request Ingredient
-        let requestIngredient: NSFetchRequest<Ingredient> = Ingredient.fetchRequest()
-        
-        let filter = "Mexican Rice"
-        let predicate = NSPredicate(format: "recipe.title = %@", filter)
-        requestIngredient.predicate = predicate
-        
-        guard let resultIngredient = try? AppDelegate.viewContext.fetch(requestIngredient) else {
-            return
-        }
-        ingredients = resultIngredient
-        */
-        
-        recipes = resultRecipe
-        
+        recipes = FavoriteRecipe.all
         tableView.reloadData()
           
     }
+    
+   
+    //MARK: - CUSTOM NAVIGATIONBAR
+    
+    func customizeNavigationItems(){
+        // Attempt to customize navigation controller...
+        self.navigationItem.title = "Reciplease"
+        self.navigationController!.navigationBar.titleTextAttributes =
+            [.foregroundColor: UIColor.white, .font: UIFont.init(name: "Chalkduster", size: 18)!]
+    }
+    
+    
+}
+
+extension FavoriteViewController: UITableViewDataSource {
+    //MARK: - TABLEVIEW
  
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return recipes.count
@@ -93,63 +92,12 @@ class FavoriteViewController: UIViewController, UITableViewDelegate, UITableView
             //vc.selectedRecipe.recipe.ingredientLines = recipes[indexPath.row].ingredients
             vc.currentImageName = recipes[indexPath.row].image
             vc.currentTitle = recipes[indexPath.row].title
-            
-            // Request Ingredient
-            let requestIngredient: NSFetchRequest<Ingredient> = Ingredient.fetchRequest()
-            
-            let filter = recipes[indexPath.row].title
-            let predicate = NSPredicate(format: "recipe.title = %@", filter!)
-            requestIngredient.predicate = predicate
-            requestIngredient.sortDescriptors = [NSSortDescriptor(key: "createdAt", ascending: true)]
-            guard let resultIngredient = try? AppDelegate.viewContext.fetch(requestIngredient) else {
-                return
-            }
-            var array = [String]()
-            for i in 0..<resultIngredient.count {
-                array.append(resultIngredient[i].name!)
-            }
-            vc.ingredientLines = array
+            vc.ingredientLines = Ingredient.listOfIngredients (from:recipes[indexPath.row].title!)
+            vc.isFavorite = true
             // Push it onto the navigation controller
             navigationController?.pushViewController(vc, animated: true)
         }
         
     }
-    
-    func customizeNavigationItems(){
-        // Attempt to customize navigation controller...
-        self.navigationItem.title = "Reciplease"
-        self.navigationController!.navigationBar.titleTextAttributes =
-            [.foregroundColor: UIColor.white, .font: UIFont.init(name: "Chalkduster", size: 18)!]
-    }
-    
-    
-    func deleteCoreDataItems () {
-        
-        //To delete things in core data...
-        
-        var fetchRequest: NSFetchRequest<NSFetchRequestResult> = NSFetchRequest(entityName: "FavoriteRecipe")
-        var deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
-      
-
-        do {
-            try AppDelegate.viewContext.execute(deleteRequest)
-        } catch let error as NSError {
-            print(error)
-        }
-        
-        fetchRequest = NSFetchRequest(entityName: "Ingredient")
-        deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
- 
-        do {
-            try AppDelegate.viewContext.execute(deleteRequest)
-        } catch let error as NSError {
-            print(error)
-        }
-        
-        
-        
-    }
-    
-    
     
 }

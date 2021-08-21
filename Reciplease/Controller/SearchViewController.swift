@@ -10,16 +10,32 @@ import Alamofire
 
 class SearchViewController: UIViewController {
     
-    @IBOutlet var searchButton: UIButton!
-    @IBOutlet var addButton: UIButton!
-    @IBOutlet var ingredientListText: UITextView!
-    @IBOutlet var querryIngredientText: UITextField!
+    var searchView:SearchView!
+    
+    var topBarHeight:CGFloat {
+        let window = UIApplication.shared.windows.filter {$0.isKeyWindow}.first
+        let frameWindow = window?.windowScene?.statusBarManager?.statusBarFrame.height ?? 0
+        let frameNavigationBar = self.navigationController?.navigationBar.frame.height ?? 0
+        return frameWindow + frameNavigationBar
+    }
+    
+    var bottomBarHeight:CGFloat {
+        let frameTabBar = self.tabBarController?.tabBar.frame.height ?? 0
+        return frameTabBar
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
+        // Customize navigation bars
         customizeNavigationItems()
+        
+        // Add View
+        let frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height - topBarHeight - bottomBarHeight)
+    
+        searchView = SearchView(frame: frame)
+        self.view.addSubview(searchView)
         
         /*
         print("hello")
@@ -34,21 +50,23 @@ class SearchViewController: UIViewController {
          }
         self.view.addSubview(myImageView)
         */
-      
-        ingredientListText.text = "Your Ingredients : \n"
         
         // gesture recognizer
         let tap = UITapGestureRecognizer(target: self, action: #selector(self.handleTap(_:)))
         self.view.addGestureRecognizer(tap)
         
         let search = UITapGestureRecognizer(target: self, action: #selector(self.handleSearch(_:)))
-        self.searchButton.addGestureRecognizer(search)
+        self.searchView.buttonRequest.addGestureRecognizer(search)
         
         let add = UITapGestureRecognizer(target: self, action: #selector(self.handleAdd(_:)))
-        self.addButton.addGestureRecognizer(add)
+        self.searchView.buttonAddLine.addGestureRecognizer(add)
         
         
         
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        print(self.view.frame)
     }
     
     //MARK: - HANDLE USER INPUT
@@ -65,12 +83,14 @@ class SearchViewController: UIViewController {
     // Add Ingredient(s)
     @objc func handleAdd(_ sender: UITapGestureRecognizer? = nil) {
         
-        if querryIngredientText.text != nil {
+        if searchView.textEditable.text != nil {
             
-            let modifiedArray = querryIngredientText.text.map { $0.components(separatedBy: ",") }
+            let modifiedArray = searchView.textEditable.text.map { $0.components(separatedBy: ",") }
+            
+            searchView.textQuerryList.text?.append("\n" )
             
             for i in 0..<modifiedArray!.count {
-                ingredientListText.text?.append(" - \(modifiedArray![i])\n" )
+                searchView.textQuerryList.text?.append(" - \(modifiedArray![i])\n" )
             }// End for
             
         }// End if
@@ -80,10 +100,13 @@ class SearchViewController: UIViewController {
     
     // Hide Keyboard
     @objc func handleTap(_ sender: UITapGestureRecognizer? = nil) {
-        querryIngredientText.resignFirstResponder()
+        searchView.textEditable.resignFirstResponder()
 
     }
-    
+ 
+}
+
+extension SearchViewController {
     //MARK: - CUSTOM NAVIGATIONBAR
     
     func customizeNavigationItems() {

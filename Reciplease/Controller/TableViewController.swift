@@ -14,7 +14,6 @@ class TableViewController: UIViewController, UITableViewDelegate {
     
     var recipes: Recipes!
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -66,10 +65,10 @@ extension  TableViewController: UITableViewDataSource {
     
     // Arrange Cell with image and text
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        // Create a new cell if needed or reuse an old one
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! SearchResultCellView
+        // Customized cell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! CellView
         
-        // request image with Alamofire
+        // Image
         RecipeService.shared.getImage(url: recipes.hits[indexPath.row].recipe.image, completionHandler: { (success, error, result) in
             if success {
                 cell.backgroundView = UIImageView(image: UIImage(data: result!) )
@@ -77,10 +76,13 @@ extension  TableViewController: UITableViewDataSource {
             }
         })
         
-        // Set title
+        // Title
         cell.title.text = recipes.hits[indexPath.row].recipe.label
+
+        // Gradient
+        cell.gradient(frame: cell.frame)
         
-        // Cell is ready so
+        // Ready
         return cell
     }
     

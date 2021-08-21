@@ -67,7 +67,7 @@ extension FavoriteViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         // create a new cell if needed or reuse an old one
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! SearchResultCellView
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! CellView
         
         // Set title
         cell.title.text = recipes[indexPath.row].title

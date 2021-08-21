@@ -1,0 +1,109 @@
+//
+//  SearchView.swift
+//  Reciplease
+//
+//  Created by Gilles Sagot on 21/08/2021.
+//
+
+import UIKit
+
+class SearchView: UIView {
+
+    var area: UIView!
+    var line: UIView!
+    var buttonRequest: UIButton!
+    var buttonAddLine: UIButton!
+    var textEditable: UITextField!
+    var textQuerryList: UITextView!
+    
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+    }
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+
+        // View
+        area = UIView()
+        area.backgroundColor = .white
+        area.frame = CGRect(x: 0,
+                            y: 0,
+                            width: frame.width,
+                            height: 200)
+  
+        
+        // text
+        textEditable = UITextField()
+        textEditable.font = UIFont(name: "Avenir", size: 24)
+        textEditable.text = "Chicken, rice, tomatoe"
+        textEditable.frame = CGRect(x: 10,
+                                    y: 50,
+                                    width: frame.width - 100,
+                                    height: 50)
+        
+        
+        
+        // Buttons
+        buttonAddLine = UIButton()
+        buttonAddLine.backgroundColor = UIColor.blue
+        buttonAddLine.titleLabel?.font = UIFont(name: "Avenir", size: 24)
+        buttonAddLine.setTitle("Add", for: .normal)
+        buttonAddLine.setTitleColor(.white, for: .normal)
+        buttonAddLine.frame = CGRect(x: textEditable.frame.maxX + 10,
+                                     y: textEditable.frame.minY,
+                                     width: 70,
+                                     height: 50)
+        
+        
+        // List
+        buttonRequest = UIButton()
+        buttonRequest.backgroundColor = UIColor.blue
+        buttonRequest.titleLabel?.font = UIFont(name: "Avenir", size: 24)
+        buttonRequest.setTitle("Search for recipes", for: .normal)
+        buttonRequest.setTitleColor(.white, for: .normal)
+        buttonRequest.frame = CGRect(x: frame.midX - 140,
+                                     y: frame.maxY - 80,
+                                     width: 280,
+                                     height: 50)
+        
+        
+        // Text
+        textQuerryList = UITextView()
+        textQuerryList.backgroundColor = .init(white: 1, alpha: 0)
+        textQuerryList.font = UIFont(name: "Chalkduster", size: 24)
+        textQuerryList.textColor = .white
+        textQuerryList.text = "Ingredients :"
+        textQuerryList.frame = CGRect(x: 0,
+                                      y: area.frame.maxY,
+                                      width: frame.width,
+                                      height: buttonRequest.frame.minY - area.frame.maxY)
+     
+        
+        //Line
+        line = UIView()
+        line.backgroundColor = .lightGray
+        line.frame = CGRect(x: 10,
+                            y: textEditable.frame.maxY,
+                            width: textEditable.frame.width,
+                            height: 1)
+        
+
+        // Add to view
+        self.addSubview(area)
+        self.addSubview(buttonRequest)
+        self.addSubview(buttonAddLine)
+        self.addSubview(textEditable)
+        self.addSubview(textQuerryList)
+        self.addSubview(line)
+    }
+    
+    convenience init(inView: UIView) {
+        let rect = CGRect(x: 0, y: 0, width: inView.frame.width, height: inView.frame.height)
+        self.init(frame: rect)
+      
+    }
+
+        
+}
+
+

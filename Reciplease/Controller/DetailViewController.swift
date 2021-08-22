@@ -13,6 +13,8 @@ class DetailViewController: UIViewController, UITextViewDelegate {
     var currentImageName:String!
     var currentTitle:String!
     var ingredientLines:[String]!
+    var currentYield:Double!
+    var currentTotalTime:Double!
     var isFavorite:Bool!
     
     // MARK: - UI VARIABLE
@@ -51,7 +53,7 @@ class DetailViewController: UIViewController, UITextViewDelegate {
     //MARK: - HANDLE USER INPUT
     
     @objc func handleAddFavorite(_ sender: UITapGestureRecognizer? = nil) {
-        FavoriteRecipe.saveRecipeToFavorite(title: currentTitle!, image: currentImageName!, ingredients: ingredientLines)
+        FavoriteRecipe.saveRecipeToFavorite(title: currentTitle!, image: currentImageName!, ingredients: ingredientLines, yield: currentYield, totalTime: currentTotalTime)
         isFavorite = true
         customizeNavigationItems()
     }

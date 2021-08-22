@@ -83,6 +83,11 @@ extension FavoriteViewController: UITableViewDataSource {
         
         // Gradient
         cell.gradient(frame: cell.frame)
+        
+        // Insert
+        cell.insertView.center.x = cell.frame.maxX - 60 - 10
+        cell.insertView.textYield.text = String(recipes[indexPath.row].yield)
+        cell.insertView.textTime.text = timeToString(interval: recipes[indexPath.row].totalTime )
  
         // Ready
         return cell
@@ -97,10 +102,25 @@ extension FavoriteViewController: UITableViewDataSource {
             vc.currentTitle = recipes[indexPath.row].title
             vc.ingredientLines = Ingredient.listOfIngredients (from:recipes[indexPath.row].title!)
             vc.isFavorite = true
+            vc.currentYield = recipes[indexPath.row].yield
+            vc.currentTotalTime = recipes[indexPath.row].totalTime
             // Push it onto the navigation controller
             navigationController?.pushViewController(vc, animated: true)
         }
         
     }
+    
+    func timeToString (interval:Double) ->String{
+        if interval != 0 {
+        let time = TimeInterval(interval * 60)
+        let formatter = DateComponentsFormatter()
+        formatter.unitsStyle = .abbreviated
+        formatter.allowedUnits = [.hour, .minute]
+        return formatter.string(from: time)!
+        }else{
+            return "N/A"
+        }
+    }
+    
     
 }

@@ -82,6 +82,11 @@ extension  TableViewController: UITableViewDataSource {
         // Gradient
         cell.gradient(frame: cell.frame)
         
+        // Insert
+        cell.insertView.center.x = cell.frame.maxX - 60 - 10
+        cell.insertView.textYield.text = String(recipes.hits[indexPath.row].recipe.yield)
+        cell.insertView.textTime.text = timeToString(interval: recipes.hits[indexPath.row].recipe.totalTime )
+        
         // Ready
         return cell
     }
@@ -94,6 +99,8 @@ extension  TableViewController: UITableViewDataSource {
             vc.currentTitle = recipes.hits[indexPath.row].recipe.label
             vc.currentImageName = recipes.hits[indexPath.row].recipe.image
             vc.isFavorite = false
+            vc.currentYield = recipes.hits[indexPath.row].recipe.yield
+            vc.currentTotalTime = recipes.hits[indexPath.row].recipe.totalTime
             
             // Set its Ingredients list
             var array = [String]()
@@ -102,11 +109,24 @@ extension  TableViewController: UITableViewDataSource {
             }
             vc.ingredientLines = array
             
+            
             // Push it onto the navigation controller
             navigationController?.pushViewController(vc, animated: true)
         }// End if
         
     }// End func
+    
+    func timeToString (interval:Double) ->String{
+        if interval != 0 {
+        let time = TimeInterval(interval * 60)
+        let formatter = DateComponentsFormatter()
+        formatter.unitsStyle = .abbreviated
+        formatter.allowedUnits = [.hour, .minute]
+        return formatter.string(from: time)!
+        }else{
+            return "N/A"
+        }
+    }
     
     
 }// End class

@@ -68,10 +68,6 @@ class SearchViewController: UIViewController {
         
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        print(self.view.frame)
-    }
-    
     //MARK: - HANDLE USER INPUT
     
     // Request and result in a tableView (next controler)

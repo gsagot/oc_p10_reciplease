@@ -11,7 +11,9 @@ struct Recipe : Codable {
     var label: String
     var image: String
     var url: String
+    var yield: Double
     var ingredientLines:[String]
+    var totalTime: Double
 }
 
 struct Hits : Codable {

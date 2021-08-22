@@ -12,6 +12,7 @@ import UIKit
 class CellView : UITableViewCell {
     
     var title: UILabel!
+    var insertView: InsertView!
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -25,10 +26,14 @@ class CellView : UITableViewCell {
         title.textColor = UIColor.white
         title.font = UIFont(name: "helvetica", size: 18)
         title.frame = CGRect(x: 0, y: 130, width: 400, height: 30)
+        
+        // Insert
+        insertView = InsertView(frame: CGRect(x: 300, y: 20, width: 120, height: 90))
 
         
         // Add to view
         self.addSubview(title)
+        self.addSubview(insertView)
         
     }
     

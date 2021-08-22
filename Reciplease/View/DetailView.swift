@@ -19,11 +19,6 @@ class DetailView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-    }
-    
-    convenience init(inView: UIView) {
-        let rect = CGRect(x: 0, y: 0, width: inView.frame.width, height: inView.frame.height)
-        self.init(frame: rect)
         
         // Image
         imageRecipe = UIImageView()
@@ -31,7 +26,7 @@ class DetailView: UIView {
         imageRecipe.contentMode = .scaleAspectFill
         imageRecipe.frame = CGRect(x: 0,
                                    y: 0,
-                                   width: rect.width,
+                                   width: frame.width,
                                    height: 200)
         
         
@@ -39,10 +34,10 @@ class DetailView: UIView {
         textRecipeTitle = UITextField()
         textRecipeTitle.font = UIFont(name: "HelveticaNeue-Bold", size: 21)
         textRecipeTitle.textColor = .white
-        textRecipeTitle.backgroundColor = .blue
+        textRecipeTitle.backgroundColor = .init(white: 1, alpha: 0)
         textRecipeTitle.frame = CGRect(x: 0,
                                        y: imageRecipe.frame.maxY,
-                                       width: rect.width,
+                                       width: frame.width,
                                        height: 50)
         
         
@@ -50,13 +45,16 @@ class DetailView: UIView {
         
         // List
         textListOfIngredients = UITextView()
-        textListOfIngredients.textColor = .white
+        textListOfIngredients.textColor = .gray
+        textListOfIngredients.isEditable = false
+        textListOfIngredients.isSelectable = false
+        textListOfIngredients.isScrollEnabled = true
         textListOfIngredients.backgroundColor = UIColor.init(white: 1, alpha: 0)
         textListOfIngredients.font = UIFont(name: "Chalkduster", size: 16)
         textListOfIngredients.frame = CGRect(x: 0,
                                              y: textRecipeTitle.frame.maxY,
-                                             width: rect.width,
-                                             height: rect.height - imageRecipe.frame.maxY - 100)
+                                             width: frame.width,
+                                             height: frame.height - imageRecipe.frame.maxY - 100)
         
         
         
@@ -65,10 +63,16 @@ class DetailView: UIView {
         self.addSubview(imageRecipe)
         self.addSubview(textRecipeTitle)
         self.addSubview(textListOfIngredients)
+        self.bringSubviewToFront(textListOfIngredients)
         
       
     }
 
-        
+    
+    convenience init(inView: UIView) {
+        let rect = CGRect(x: 0, y: 0, width: inView.frame.width, height: inView.frame.height)
+        self.init(frame: rect)
+    }
+   
 }
 

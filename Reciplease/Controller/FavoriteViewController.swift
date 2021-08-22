@@ -66,13 +66,10 @@ extension FavoriteViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        // create a new cell if needed or reuse an old one
+        // Customized cell
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! CellView
         
-        // Set title
-        cell.title.text = recipes[indexPath.row].title
-        
-        // Load image with Alamofire
+        // Image
         
         RecipeService.shared.getImage(url: recipes[indexPath.row].image!, completionHandler: { (success, error, result) in
             if success {
@@ -80,8 +77,14 @@ extension FavoriteViewController: UITableViewDataSource {
                 cell.backgroundView?.contentMode = .scaleAspectFill
             }
         })
+        
+        // Title
+        cell.title.text = recipes[indexPath.row].title
+        
+        // Gradient
+        cell.gradient(frame: cell.frame)
  
-        // Cell is ready
+        // Ready
         return cell
     }
     

@@ -61,6 +61,9 @@ class SearchViewController: UIViewController {
         let add = UITapGestureRecognizer(target: self, action: #selector(self.handleAdd(_:)))
         self.searchView.buttonAddLine.addGestureRecognizer(add)
         
+        let clear = UITapGestureRecognizer(target: self, action: #selector(self.handleClear(_:)))
+        self.searchView.buttonClearList.addGestureRecognizer(clear)
+        
         
         
     }
@@ -94,6 +97,13 @@ class SearchViewController: UIViewController {
             }// End for
             
         }// End if
+        
+    }// End func
+    
+    // Delete Ingredients
+    @objc func handleClear(_ sender: UITapGestureRecognizer? = nil) {
+        
+        searchView.textQuerryList.text = "Your Ingredients :"
         
     }// End func
     

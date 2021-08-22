@@ -13,6 +13,7 @@ class SearchView: UIView {
     var line: UIView!
     var buttonRequest: UIButton!
     var buttonAddLine: UIButton!
+    var buttonClearList: UIButton!
     var textEditable: UITextField!
     var textQuerryList: UITextView!
     
@@ -50,9 +51,9 @@ class SearchView: UIView {
         buttonAddLine.setTitle("Add", for: .normal)
         buttonAddLine.setTitleColor(.white, for: .normal)
         buttonAddLine.frame = CGRect(x: textEditable.frame.maxX + 10,
-                                     y: textEditable.frame.minY,
+                                     y: textEditable.frame.minY + 12,
                                      width: 70,
-                                     height: 50)
+                                     height: 30)
         
         
         // List
@@ -70,13 +71,23 @@ class SearchView: UIView {
         // Text
         textQuerryList = UITextView()
         textQuerryList.backgroundColor = .init(white: 1, alpha: 0)
-        textQuerryList.font = UIFont(name: "Chalkduster", size: 24)
+        textQuerryList.font = UIFont(name: "Chalkduster", size: 18)
         textQuerryList.textColor = .white
-        textQuerryList.text = "Ingredients :"
+        textQuerryList.text = "Your Ingredients :"
         textQuerryList.frame = CGRect(x: 0,
-                                      y: area.frame.maxY,
+                                      y: area.frame.maxY + 10,
                                       width: frame.width,
                                       height: buttonRequest.frame.minY - area.frame.maxY)
+        
+        buttonClearList = UIButton()
+        buttonClearList.backgroundColor = UIColor.gray
+        buttonClearList.titleLabel?.font = UIFont(name: "Avenir", size: 24)
+        buttonClearList.setTitle("Clear", for: .normal)
+        buttonClearList.setTitleColor(.white, for: .normal)
+        buttonClearList.frame = CGRect(x: buttonAddLine.frame.minX,
+                                       y: textQuerryList.frame.minY + 9,
+                                     width: 70,
+                                     height: 30)
      
         
         //Line
@@ -94,6 +105,7 @@ class SearchView: UIView {
         self.addSubview(buttonAddLine)
         self.addSubview(textEditable)
         self.addSubview(textQuerryList)
+        self.addSubview(buttonClearList)
         self.addSubview(line)
     }
     

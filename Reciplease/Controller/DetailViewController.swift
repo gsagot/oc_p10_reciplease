@@ -7,7 +7,7 @@
 
 import UIKit
 
-class DetailViewController: UIViewController {
+class DetailViewController: UIViewController, UITextViewDelegate {
     
     // MARK: - DATA VARIABLE
     var currentImageName:String!
@@ -18,7 +18,17 @@ class DetailViewController: UIViewController {
     // MARK: - UI VARIABLE
     var detailView: DetailView!
     
-
+    var topBarHeight:CGFloat {
+        let window = UIApplication.shared.windows.filter {$0.isKeyWindow}.first
+        let frameWindow = window?.windowScene?.statusBarManager?.statusBarFrame.height ?? 0
+        let frameNavigationBar = self.navigationController?.navigationBar.frame.height ?? 0
+        return frameWindow + frameNavigationBar
+    }
+    
+    var bottomBarHeight:CGFloat {
+        let frameTabBar = self.tabBarController?.tabBar.frame.height ?? 0
+        return frameTabBar
+    }
     
     //MARK: - LAYOUT
     
@@ -30,8 +40,11 @@ class DetailViewController: UIViewController {
         customizeNavigationItems()
         
         // View layout
-        detailView = DetailView(inView: self.view)
+        let frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height - topBarHeight - bottomBarHeight)
+        detailView = DetailView(frame: frame)
         self.view.addSubview(detailView)
+        
+        detailView.textListOfIngredients.delegate = self
             
     }
     

@@ -29,11 +29,11 @@ class RecipeService {
         RecipeService.shared = RecipeService()
     }
     
-    func getRecipes(completionHandler: @escaping ((Bool, String?, Recipes? ) -> Void)) {
+    func getRecipes(query:String, completionHandler: @escaping ((Bool, String?, Recipes? ) -> Void)) {
         
         let url = "https://api.edamam.com/api/recipes/v2"
         let queryParameters: [String: String] = ["type": "public",
-                                                 "q": "chicken",
+                                                 "q": query,
                                                  "app_id": key.app_id,
                                                  "app_key": key.app_key,
                                                  "ingr": "3-8"]

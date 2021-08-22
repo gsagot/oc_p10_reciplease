@@ -56,7 +56,7 @@ class SearchView: UIView {
                                      height: 30)
         
         
-        // List
+        
         buttonRequest = UIButton()
         buttonRequest.backgroundColor = UIColor.blue
         buttonRequest.titleLabel?.font = UIFont(name: "Avenir", size: 24)
@@ -68,17 +68,21 @@ class SearchView: UIView {
                                      height: 50)
         
         
-        // Text
+        // List
         textQuerryList = UITextView()
         textQuerryList.backgroundColor = .init(white: 1, alpha: 0)
         textQuerryList.font = UIFont(name: "Chalkduster", size: 18)
         textQuerryList.textColor = .white
         textQuerryList.text = "Your Ingredients :"
+        textQuerryList.isSelectable = false
+        textQuerryList.isEditable = false
         textQuerryList.frame = CGRect(x: 0,
                                       y: area.frame.maxY + 10,
                                       width: frame.width,
                                       height: buttonRequest.frame.minY - area.frame.maxY)
         
+        
+        // Button
         buttonClearList = UIButton()
         buttonClearList.backgroundColor = UIColor.gray
         buttonClearList.titleLabel?.font = UIFont(name: "Avenir", size: 24)

@@ -21,14 +21,8 @@ class TableViewController: UIViewController, UITableViewDelegate {
         customizeNavigationItems()
         
         // Recipes from Edamam for testing
-        let bundle = Bundle(for: TableViewController.self)
-        let url = bundle.url(forResource: "Edamam", withExtension: "json")!
-        let data = try? Data(contentsOf: url)
-        
-        let result = try? JSONDecoder().decode(Recipes.self, from: data!)
-        // print (result?.hits[0].recipe.image ?? "🔴 erreur ...")
-        
-        recipes = result
+        // localTest()
+
         
         // delegate things ...
         tableView.delegate = self
@@ -38,6 +32,16 @@ class TableViewController: UIViewController, UITableViewDelegate {
     
     override func viewWillAppear(_ animated: Bool) {
         tableView.reloadData()
+    }
+    
+    // Local test
+    func localTest() {
+        let bundle = Bundle(for: TableViewController.self)
+        let url = bundle.url(forResource: "Edamam", withExtension: "json")!
+        let data = try? Data(contentsOf: url)
+        
+        let result = try? JSONDecoder().decode(Recipes.self, from: data!)
+        recipes = result
     }
     
     

@@ -7,7 +7,7 @@
 
 import UIKit
 
-class DetailViewController: UIViewController, UITextViewDelegate {
+class DetailViewController: UIViewController {
     
     // MARK: - DATA VARIABLE
     var currentImageName:String!
@@ -45,8 +45,6 @@ class DetailViewController: UIViewController, UITextViewDelegate {
         let frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height - topBarHeight - bottomBarHeight)
         detailView = DetailView(frame: frame)
         self.view.addSubview(detailView)
-        
-        detailView.textListOfIngredients.delegate = self
             
     }
     

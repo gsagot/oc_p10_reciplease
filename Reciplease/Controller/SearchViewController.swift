@@ -11,6 +11,7 @@ import Alamofire
 class SearchViewController: UIViewController {
     
     var searchView:SearchView!
+    var search = String()
     
     var topBarHeight:CGFloat {
         let window = UIApplication.shared.windows.filter {$0.isKeyWindow}.first
@@ -31,25 +32,11 @@ class SearchViewController: UIViewController {
         // Customize navigation bars
         customizeNavigationItems()
         
-        // Add View
+        // Add search view
         let frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height - topBarHeight - bottomBarHeight)
     
         searchView = SearchView(frame: frame)
         self.view.addSubview(searchView)
-        
-        /*
-        print("hello")
-        RecipeService.shared.getRecipes(completionHandler: { (success, error, recipe) in
-            print ("success")
-        })
-        
-        let myImageView = UIImageView()
-        myImageView.frame = CGRect(x: 0, y: 0, width: 100, height: 100)
-        AF.request("https://robohash.org/123.png").response { response in
-            myImageView.image = UIImage(data: response.data!, scale:1)
-         }
-        self.view.addSubview(myImageView)
-        */
         
         // gesture recognizer
         let tap = UITapGestureRecognizer(target: self, action: #selector(self.handleTap(_:)))
@@ -68,16 +55,35 @@ class SearchViewController: UIViewController {
         
     }
     
+    // MARK: - ALERT CONTROLLER
+    
+    private func presentUIAlertController(title:String, message:String) {
+        let ac = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        ac.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+        present(ac, animated: true, completion: nil)
+    }
+    
     //MARK: - HANDLE USER INPUT
     
-    // Request and result in a tableView (next controler)
+    // Request
     @objc func handleSearch(_ sender: UITapGestureRecognizer? = nil) {
         
-        if let vc = storyboard?.instantiateViewController(withIdentifier: "Result") as? TableViewController {
-            // Push it onto the navigation controller
-            navigationController?.pushViewController(vc, animated: true)
-        }
+        RecipeService.shared.getRecipes(query:search ,completionHandler: { (success, error, recipes) in
+            if success{
+                if let vc = self.storyboard?.instantiateViewController(withIdentifier: "Result") as? TableViewController {
+                    // Push it onto the navigation controller
+                    vc.recipes = recipes
+                    self.navigationController?.pushViewController(vc, animated: true)
+                }
+                
+            }else{
+                self.presentUIAlertController(title: "error", message: error!)
+            }
+        })
+        
+  
     }
+    
     
     // Add Ingredient(s)
     @objc func handleAdd(_ sender: UITapGestureRecognizer? = nil) {
@@ -89,6 +95,7 @@ class SearchViewController: UIViewController {
             searchView.textQuerryList.text?.append("\n" )
             
             for i in 0..<modifiedArray!.count {
+                search.append(modifiedArray![i] + " ")
                 searchView.textQuerryList.text?.append(" - \(modifiedArray![i])\n" )
             }// End for
             
@@ -96,7 +103,8 @@ class SearchViewController: UIViewController {
         
     }// End func
     
-    // Delete Ingredients
+    
+    // Delete Ingredient(s)
     @objc func handleClear(_ sender: UITapGestureRecognizer? = nil) {
         
         searchView.textQuerryList.text = "Your Ingredients :"
@@ -112,11 +120,13 @@ class SearchViewController: UIViewController {
  
 }
 
+//MARK: - CUSTOM NAVIGATIONBAR
+
 extension SearchViewController {
-    //MARK: - CUSTOM NAVIGATIONBAR
-    
+
     func customizeNavigationItems() {
-        // Attempt to customize tabBar controller...
+        
+        // TabBar controller
         self.tabBarController?.tabBar.isTranslucent = true
         self.tabBarController?.tabBar.barStyle = .black
         self.tabBarController?.tabBar.backgroundColor = UIColor.init(red: 20/255, green: 20/255, blue: 20/255, alpha: 1)
@@ -128,7 +138,7 @@ extension SearchViewController {
         self.tabBarController?.tabBar.items![1].titlePositionAdjustment.vertical = -10
 
         
-        // Attempt to customize navigation controller...
+        // Navigation controller
         self.navigationItem.title = "Reciplease"
         self.navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.white, .font: UIFont.init(name: "Chalkduster", size: 18)!]
         

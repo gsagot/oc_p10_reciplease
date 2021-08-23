@@ -104,6 +104,7 @@ extension FavoriteViewController: UITableViewDataSource {
             vc.isFavorite = true
             vc.currentYield = recipes[indexPath.row].yield
             vc.currentTotalTime = recipes[indexPath.row].totalTime
+            vc.currentUrl = recipes[indexPath.row].url
             // Push it onto the navigation controller
             navigationController?.pushViewController(vc, animated: true)
         }

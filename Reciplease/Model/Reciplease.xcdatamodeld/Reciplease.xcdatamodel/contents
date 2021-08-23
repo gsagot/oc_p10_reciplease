@@ -5,6 +5,7 @@
         <attribute name="ingredients" optional="YES" attributeType="String"/>
         <attribute name="title" optional="YES" attributeType="String"/>
         <attribute name="totalTime" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="url" optional="YES" attributeType="String"/>
         <attribute name="yield" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <relationship name="ingredient" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="Ingredient" inverseName="recipe" inverseEntity="Ingredient"/>
     </entity>
@@ -14,7 +15,7 @@
         <relationship name="recipe" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="FavoriteRecipe" inverseName="ingredient" inverseEntity="FavoriteRecipe"/>
     </entity>
     <elements>
-        <element name="FavoriteRecipe" positionX="-180.06640625" positionY="-47.0703125" width="128" height="133"/>
+        <element name="FavoriteRecipe" positionX="-180.06640625" positionY="-47.0703125" width="128" height="134"/>
         <element name="Ingredient" positionX="274.13671875" positionY="7.87109375" width="128" height="88"/>
     </elements>
 </model>

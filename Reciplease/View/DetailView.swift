@@ -12,6 +12,7 @@ class DetailView: UIView {
     var textListOfIngredients: UITextView!
     var textRecipeTitle: UITextField!
     var imageRecipe:UIImageView!
+    var buttonGetDirections:UIButton!
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
@@ -24,9 +25,10 @@ class DetailView: UIView {
         imageRecipe = UIImageView()
         imageRecipe.clipsToBounds = true
         imageRecipe.contentMode = .scaleAspectFill
-        imageRecipe.frame = CGRect(x: 0,
+        imageRecipe.layer.cornerRadius = 10
+        imageRecipe.frame = CGRect(x: 10,
                                    y: 0,
-                                   width: frame.width,
+                                   width: frame.width - 20,
                                    height: 200)
         
         
@@ -35,28 +37,36 @@ class DetailView: UIView {
         textRecipeTitle.font = UIFont(name: "HelveticaNeue-Bold", size: 21)
         textRecipeTitle.textColor = .white
         textRecipeTitle.backgroundColor = .init(white: 1, alpha: 0)
-        textRecipeTitle.frame = CGRect(x: 0,
+        textRecipeTitle.frame = CGRect(x: 10,
                                        y: imageRecipe.frame.maxY,
-                                       width: frame.width,
+                                       width: frame.width - 20,
                                        height: 50)
         
         
+        // Button
+        buttonGetDirections = UIButton()
+        buttonGetDirections.backgroundColor = .blue
+        buttonGetDirections.setTitle("Get directions", for: .normal)
+        buttonGetDirections.titleLabel?.font = UIFont(name: "Avenir", size: 24)
+        buttonGetDirections.frame = CGRect(x: 30,
+                                           y: frame.maxY - 80,
+                                           width: frame.width - 60,
+                                           height: 50)
         
         
         // List
         textListOfIngredients = UITextView()
-        textListOfIngredients.textColor = .gray
+        textListOfIngredients.textColor = .white
         textListOfIngredients.isEditable = false
         textListOfIngredients.isSelectable = false
         textListOfIngredients.isScrollEnabled = true
         textListOfIngredients.backgroundColor = UIColor.init(white: 1, alpha: 0)
         textListOfIngredients.font = UIFont(name: "Chalkduster", size: 16)
-        textListOfIngredients.frame = CGRect(x: 0,
+        textListOfIngredients.frame = CGRect(x: 10,
                                              y: textRecipeTitle.frame.maxY,
-                                             width: frame.width,
-                                             height: frame.height - imageRecipe.frame.maxY - 100)
-        
-        
+                                             width: frame.width - 20,
+                                             height: buttonGetDirections.frame.minY
+                                                - textRecipeTitle.frame.maxY - 10)
         
         
         // Add to view
@@ -64,6 +74,7 @@ class DetailView: UIView {
         self.addSubview(textRecipeTitle)
         self.addSubview(textListOfIngredients)
         self.bringSubviewToFront(textListOfIngredients)
+        self.addSubview(buttonGetDirections)
         
       
     }

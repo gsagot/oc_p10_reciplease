@@ -21,7 +21,7 @@ public class FavoriteRecipe: NSManagedObject {
 
     //MARK: - ADD RECIPE TO FAVORITE
     
-    static func saveRecipeToFavorite(title:String, image:String, ingredients:[String], yield:Double, totalTime:Double)  {
+    static func saveRecipeToFavorite(title:String, image:String, ingredients:[String], yield:Double, totalTime:Double, url:String)  {
         // Create object for recipe
         let recipe = FavoriteRecipe(context: AppDelegate.viewContext)
      
@@ -29,6 +29,7 @@ public class FavoriteRecipe: NSManagedObject {
         recipe.image = image
         recipe.yield = yield
         recipe.totalTime = totalTime
+        recipe.url = url
 
          
         for ingredient in ingredients {

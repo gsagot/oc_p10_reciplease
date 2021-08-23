@@ -105,6 +105,7 @@ extension  TableViewController: UITableViewDataSource {
             vc.isFavorite = false
             vc.currentYield = recipes.hits[indexPath.row].recipe.yield
             vc.currentTotalTime = recipes.hits[indexPath.row].recipe.totalTime
+            vc.currentUrl = recipes.hits[indexPath.row].recipe.url
             
             // Set its Ingredients list
             var array = [String]()

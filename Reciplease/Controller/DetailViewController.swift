@@ -15,6 +15,7 @@ class DetailViewController: UIViewController {
     var ingredientLines:[String]!
     var currentYield:Double!
     var currentTotalTime:Double!
+    var currentUrl:String!
     var isFavorite:Bool!
     
     // MARK: - UI VARIABLE
@@ -45,13 +46,22 @@ class DetailViewController: UIViewController {
         let frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height - topBarHeight - bottomBarHeight)
         detailView = DetailView(frame: frame)
         self.view.addSubview(detailView)
+        
+        // gesture recognizer
+        let getDirection = UITapGestureRecognizer(target: self, action: #selector(self.handleGetDirections(_:)))
+        self.detailView.buttonGetDirections.addGestureRecognizer(getDirection)
             
     }
     
     //MARK: - HANDLE USER INPUT
     
     @objc func handleAddFavorite(_ sender: UITapGestureRecognizer? = nil) {
-        FavoriteRecipe.saveRecipeToFavorite(title: currentTitle!, image: currentImageName!, ingredients: ingredientLines, yield: currentYield, totalTime: currentTotalTime)
+        FavoriteRecipe.saveRecipeToFavorite(title: currentTitle!,
+                                            image: currentImageName!,
+                                            ingredients: ingredientLines,
+                                            yield: currentYield,
+                                            totalTime: currentTotalTime,
+                                            url:currentUrl)
         isFavorite = true
         customizeNavigationItems()
     }
@@ -60,6 +70,12 @@ class DetailViewController: UIViewController {
         FavoriteRecipe.deleteRecipe(title: currentTitle)
         isFavorite = false
         customizeNavigationItems()
+    }
+    
+    @objc func handleGetDirections(_ sender: UITapGestureRecognizer? = nil) {
+        if let url = URL(string: currentUrl) {
+            UIApplication.shared.open(url)
+        }
     }
     
     //MARK: - RESET TEXT AND IMAGE

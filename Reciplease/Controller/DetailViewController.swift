@@ -9,7 +9,7 @@ import UIKit
 
 class DetailViewController: UIViewController {
     
-    // MARK: - DATA VARIABLE
+    // MARK: - DATA VARIABLES
     var currentImageName:String!
     var currentTitle:String!
     var ingredientLines:[String]!
@@ -18,7 +18,7 @@ class DetailViewController: UIViewController {
     var currentUrl:String!
     var isFavorite:Bool!
     
-    // MARK: - UI VARIABLE
+    // MARK: - UI VARIABLES
     var detailView: DetailView!
     
     var topBarHeight:CGFloat {
@@ -110,9 +110,6 @@ extension DetailViewController {
     func customizeNavigationItems() {
         // Attempt to customize navigation controller...
         self.navigationItem.title = "Reciplease"
-        self.navigationController!.navigationBar.titleTextAttributes =
-            [.foregroundColor: UIColor.white, .font: UIFont.init(name: "Chalkduster", size: 18)!]
-        
         let favoriteButton = UIButton(type: .system)
         
         if isFavorite {

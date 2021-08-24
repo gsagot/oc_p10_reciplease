@@ -10,8 +10,13 @@ import Alamofire
 
 class SearchViewController: UIViewController {
     
-    var searchView:SearchView!
+    // MARK: - DATA VARIABLES
+    
     var search = String()
+    
+    // MARK: - UI VARIABLES
+    
+    var searchView:SearchView!
     
     var topBarHeight:CGFloat {
         let window = UIApplication.shared.windows.filter {$0.isKeyWindow}.first
@@ -28,9 +33,6 @@ class SearchViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        
-        // Customize navigation bars
-        customizeNavigationItems()
         
         // Add search view
         let frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: self.view.frame.height - topBarHeight - bottomBarHeight)
@@ -50,8 +52,6 @@ class SearchViewController: UIViewController {
         
         let clear = UITapGestureRecognizer(target: self, action: #selector(self.handleClear(_:)))
         self.searchView.buttonClearList.addGestureRecognizer(clear)
-        
-        
         
     }
     
@@ -97,11 +97,11 @@ class SearchViewController: UIViewController {
             for i in 0..<modifiedArray!.count {
                 search.append(modifiedArray![i] + " ")
                 searchView.textQuerryList.text?.append(" - \(modifiedArray![i])\n" )
-            }// End for
+            }// End loop
             
-        }// End if
+        }// End condition
         
-    }// End func
+    }// End function
     
     
     // Delete Ingredient(s)
@@ -109,40 +109,13 @@ class SearchViewController: UIViewController {
         search = ""
         searchView.textQuerryList.text = "Your Ingredients :"
         
-    }// End func
+    }
     
     
     // Hide Keyboard
     @objc func handleTap(_ sender: UITapGestureRecognizer? = nil) {
         searchView.textEditable.resignFirstResponder()
-
     }
  
 }
 
-//MARK: - CUSTOM NAVIGATIONBAR
-
-extension SearchViewController {
-
-    func customizeNavigationItems() {
-        
-        // TabBar controller
-        self.tabBarController?.tabBar.isTranslucent = true
-        self.tabBarController?.tabBar.barStyle = .black
-        self.tabBarController?.tabBar.backgroundColor = UIColor.init(red: 20/255, green: 20/255, blue: 20/255, alpha: 1)
-        self.tabBarController?.tabBar.tintColor = UIColor.white
-        let attributes = [NSAttributedString.Key.font:UIFont(name: "Chalkduster", size: 16)]
-        self.tabBarController?.tabBar.items![0].setTitleTextAttributes(attributes as [NSAttributedString.Key : Any], for: .normal)
-        self.tabBarController?.tabBar.items![1].setTitleTextAttributes(attributes as [NSAttributedString.Key : Any], for: .normal)
-        self.tabBarController?.tabBar.items![0].titlePositionAdjustment.vertical = -10
-        self.tabBarController?.tabBar.items![1].titlePositionAdjustment.vertical = -10
-
-        
-        // Navigation controller
-        self.navigationItem.title = "Reciplease"
-        self.navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.white, .font: UIFont.init(name: "Chalkduster", size: 18)!]
-        
-    }
-    
-    
-}

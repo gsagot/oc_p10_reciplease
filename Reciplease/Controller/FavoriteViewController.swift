@@ -14,6 +14,8 @@ class FavoriteViewController: UIViewController, UITableViewDelegate {
     var recipes:[FavoriteRecipe]!
     var ingredients:[Ingredient]!
     
+    var isFavorite = false
+    
     @IBOutlet var tableView: UITableView!
     
     //MARK: - LAYOUT
@@ -21,8 +23,6 @@ class FavoriteViewController: UIViewController, UITableViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        
-        customizeNavigationItems()
 
         // FavoriteRecipe.deleteAllCoreDataItems ()
 
@@ -39,16 +39,6 @@ class FavoriteViewController: UIViewController, UITableViewDelegate {
         recipes = FavoriteRecipe.all
         tableView.reloadData()
           
-    }
-    
-   
-    //MARK: - CUSTOM NAVIGATIONBAR
-    
-    func customizeNavigationItems(){
-        // Attempt to customize navigation controller...
-        self.navigationItem.title = "Reciplease"
-        self.navigationController!.navigationBar.titleTextAttributes =
-            [.foregroundColor: UIColor.white, .font: UIFont.init(name: "Chalkduster", size: 18)!]
     }
     
     

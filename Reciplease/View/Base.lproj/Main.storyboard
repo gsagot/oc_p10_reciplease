@@ -10,7 +10,7 @@
         <!--Tab Bar Controller-->
         <scene sceneID="wbI-zS-3Rm">
             <objects>
-                <tabBarController id="ucE-KN-Bmj" sceneMemberID="viewController">
+                <tabBarController id="ucE-KN-Bmj" customClass="TabBarController" customModule="Reciplease" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="3hm-Ma-4Pe">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -28,7 +28,7 @@
         <!--Favorite-->
         <scene sceneID="RR5-oJ-nNs">
             <objects>
-                <navigationController id="gAL-ik-5aR" sceneMemberID="viewController">
+                <navigationController id="gAL-ik-5aR" customClass="NavigationController" customModule="Reciplease" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Favorite" id="lMm-Rw-Yoy"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="Swq-fZ-NeW">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
@@ -36,7 +36,7 @@
                         <color key="barTintColor" red="0.21568629149999999" green="0.20000001789999999" blue="0.19607841970000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="c2y-Zz-CX3" kind="relationship" relationship="rootViewController" id="1X9-hd-b40"/>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="I1g-UM-Sy3"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dJf-JQ-jwv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -46,7 +46,7 @@
         <!--Search-->
         <scene sceneID="ytp-gS-fmC">
             <objects>
-                <navigationController id="p5p-Vt-jkm" sceneMemberID="viewController">
+                <navigationController id="p5p-Vt-jkm" customClass="NavigationController" customModule="Reciplease" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Search" id="tae-Qs-qfK">
                         <color key="badgeColor" red="0.21568629149999999" green="0.20000001789999999" blue="0.19607841970000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                     </tabBarItem>
@@ -85,11 +85,11 @@
             <objects>
                 <viewController storyboardIdentifier="Result" useStoryboardIdentifierAsRestorationIdentifier="YES" id="BYZ-38-t0r" customClass="TableViewController" customModule="Reciplease" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="725"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="2UC-3k-PG6">
-                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="725"/>
                                 <color key="backgroundColor" red="0.1960784314" green="0.1960784314" blue="0.1960784314" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" id="1Zl-ON-HKK" customClass="CellView" customModule="Reciplease" customModuleProvider="target">
@@ -120,7 +120,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1314" y="-437"/>
+            <point key="canvasLocation" x="1622" y="-26"/>
         </scene>
         <!--Detail View Controller-->
         <scene sceneID="QhD-g0-Q7c">
@@ -136,50 +136,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8sp-Iy-kEo" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2586.9565217391305" y="28.794642857142854"/>
-        </scene>
-        <!--Favorite-->
-        <scene sceneID="SD5-M9-SO0">
-            <objects>
-                <viewController id="c2y-Zz-CX3" customClass="FavoriteViewController" customModule="Reciplease" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="aN1-W0-Wnl">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="725"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="lXX-5U-GgU">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="725"/>
-                                <color key="backgroundColor" red="0.21568629149999999" green="0.20000001789999999" blue="0.19607841970000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                <color key="sectionIndexBackgroundColor" red="0.21568629149999999" green="0.20000001789999999" blue="0.19607841970000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" id="t4D-FP-oBr" customClass="CellView" customModule="Reciplease" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="24.5" width="414" height="43.5"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="t4D-FP-oBr" id="DW2-r9-srN">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                </prototypes>
-                            </tableView>
-                        </subviews>
-                        <viewLayoutGuide key="safeArea" id="nHh-nk-JhQ"/>
-                        <color key="backgroundColor" red="0.21568629149999999" green="0.20000001789999999" blue="0.19607841970000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                        <constraints>
-                            <constraint firstItem="lXX-5U-GgU" firstAttribute="leading" secondItem="nHh-nk-JhQ" secondAttribute="leading" id="NuP-Fc-6XL"/>
-                            <constraint firstItem="lXX-5U-GgU" firstAttribute="top" secondItem="nHh-nk-JhQ" secondAttribute="top" id="TWf-78-6u8"/>
-                            <constraint firstItem="nHh-nk-JhQ" firstAttribute="trailing" secondItem="lXX-5U-GgU" secondAttribute="trailing" id="VuM-4w-XWK"/>
-                            <constraint firstItem="nHh-nk-JhQ" firstAttribute="bottom" secondItem="lXX-5U-GgU" secondAttribute="bottom" id="iRX-Ok-8VT"/>
-                        </constraints>
-                    </view>
-                    <tabBarItem key="tabBarItem" title="Favorite" id="Pq3-wE-BD3"/>
-                    <navigationItem key="navigationItem" id="6AD-k6-Vcv"/>
-                    <connections>
-                        <outlet property="tableView" destination="lXX-5U-GgU" id="6sc-wX-wrB"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="hnH-Ud-klI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1339" y="348"/>
+            <point key="canvasLocation" x="2339" y="-26"/>
         </scene>
     </scenes>
 </document>

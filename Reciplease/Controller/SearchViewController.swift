@@ -106,7 +106,7 @@ class SearchViewController: UIViewController {
     
     // Delete Ingredient(s)
     @objc func handleClear(_ sender: UITapGestureRecognizer? = nil) {
-        
+        search = ""
         searchView.textQuerryList.text = "Your Ingredients :"
         
     }// End func

@@ -29,13 +29,16 @@ class TableViewController: UIViewController, UITableViewDelegate {
         // Do any additional setup after loading the view.
         self.navigationItem.title = "Reciplease"
         
+        // Prepare array with from persistent data
+        favoriteRecipes = FavoriteRecipe.all
+        
         // delegate things ...
         tableView.delegate = self
         tableView.dataSource = self
         
     }
     
-    override func viewWillAppear(_ animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         favoriteRecipes = FavoriteRecipe.all
         tableView.reloadData()
     }

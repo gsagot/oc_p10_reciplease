@@ -13,6 +13,8 @@ class SearchViewController: UIViewController {
     // MARK: - DATA VARIABLES
     
     var search = String()
+    var firstSearch = true
+    var recipes: Recipes!
     
     // MARK: - UI VARIABLES
     
@@ -55,6 +57,7 @@ class SearchViewController: UIViewController {
         
     }
     
+    
     // MARK: - ALERT CONTROLLER
     
     private func presentUIAlertController(title:String, message:String) {
@@ -70,18 +73,23 @@ class SearchViewController: UIViewController {
         
         RecipeService.shared.getRecipes(query:search ,completionHandler: { (success, error, recipes) in
             if success{
-                if let vc = self.storyboard?.instantiateViewController(withIdentifier: "Result") as? TableViewController {
-                    // Push it onto the navigation controller
-                    vc.recipes = recipes
-                    self.navigationController?.pushViewController(vc, animated: true)
-                }
-                
+                self.recipes = recipes
+                self.updateView()
             }else{
                 self.presentUIAlertController(title: "error", message: error!)
             }
         })
         
   
+    }
+    
+    func updateView (){
+        if let vc = self.storyboard?.instantiateViewController(withIdentifier: "Result") as? TableViewController {
+            self.firstSearch = false
+            // Push it onto the navigation controller
+            vc.recipes = recipes
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
     }
     
     

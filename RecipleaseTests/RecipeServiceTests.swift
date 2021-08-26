@@ -198,10 +198,10 @@ class RecipeServiceTests: XCTestCase {
             configuration.protocolClasses = [FakeURLProtocol.self]
             return Session(configuration: configuration)
         }()
-        let recipeService = RecipeService(session: sessionTest)
+        let imageService = ImageService(session: sessionTest)
         // When
         let expectation = XCTestExpectation(description: "Wait for queue change.")
-        recipeService.getImage (url: "https://openclassrooms.com", completionHandler:{ (success, error, current) in
+        imageService.getImage (url: "https://openclassrooms.com", completionHandler:{ (success, error, current) in
         // Then
             XCTAssertFalse(success)
             XCTAssert(error == "Session task failed, Please check connection")
@@ -226,10 +226,10 @@ class RecipeServiceTests: XCTestCase {
             configuration.protocolClasses = [FakeURLProtocol.self]
             return Session(configuration: configuration)
         }()
-        let recipeService = RecipeService(session: sessionTest)
+        let imageService = ImageService(session: sessionTest)
         // When
         let expectation = XCTestExpectation(description: "Wait for queue change.")
-        recipeService.getImage (url: "https://openclassrooms.com",completionHandler:{ (success, error, current) in
+        imageService.getImage (url: "https://openclassrooms.com",completionHandler:{ (success, error, current) in
         // Then
             XCTAssertFalse(success)
             XCTAssert(error == "Session task failed, Please check connection")
@@ -254,10 +254,10 @@ class RecipeServiceTests: XCTestCase {
             configuration.protocolClasses = [FakeURLProtocol.self]
             return Session(configuration: configuration)
         }()
-        let recipeService = RecipeService(session: sessionTest)
+        let imageService = ImageService(session: sessionTest)
         // When
         let expectation = XCTestExpectation(description: "Wait for queue change.")
-        recipeService.getImage (url: "https://openclassrooms.com",completionHandler:{ (success, error, current) in
+        imageService.getImage (url: "https://openclassrooms.com",completionHandler:{ (success, error, current) in
         // Then
             XCTAssertTrue(success)
             XCTAssertNil(error)

@@ -29,6 +29,10 @@ class RecipeService {
         RecipeService.shared = RecipeService()
     }
     
+    func cancelRequest(){
+        sessionManager.cancelAllRequests()
+    }
+    
     func getRecipes(query:String, completionHandler: @escaping ((Bool, String?, Recipes? ) -> Void)) {
         
         let url = "https://api.edamam.com/api/recipes/v2"
@@ -38,52 +42,31 @@ class RecipeService {
                                                  "app_key": key.app_key,
                                                  "ingr": "3-8"]
         
+        
+       
+        
         sessionManager.request(url, parameters: queryParameters).responseDecodable(of: Recipes.self) { response in
-            /*
-            guard let recipes = response.value else {
-                return completionHandler (false,"An error occured",nil)
-            }
-            completionHandler(true,nil,recipes)
-             */
             
             switch response.result {
             case .success(_):
                 print("success")
                 completionHandler(true,nil,response.value)
-            
+                
             case .failure(let error):
                 
                 switch error {
-
+                
                 case .responseSerializationFailed(_):
                     completionHandler(false,"An error occured, Please try again",nil)
                 default:
                     completionHandler(false,"Session task failed, Please check connection",nil)
                 }// End error switch
-                
+            
             }// End response switch
             
         }// end closure
         
     }// end function
-    
-    
-    func getImage(url:String, completionHandler: @escaping ((Bool, String?, Data? ) -> Void)) {
-        
-        sessionManager.request(url).response { response in
-            
-            switch response.result {
-            case .success(_):
-                completionHandler(true,nil,response.data)
-            
-            case .failure(_):
-                    completionHandler(false,"Session task failed, Please check connection",nil)
-                
-            }// End response switch
-            
-         }// end closure
-        
-    }
           
     
 }

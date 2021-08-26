@@ -13,6 +13,7 @@
 		CA132C1126D019AF00AC11FA /* FavoriteRecipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA132C1026D019AF00AC11FA /* FavoriteRecipe.swift */; };
 		CA213AE326D562BB00471F8C /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA213AE226D562BB00471F8C /* TabBarController.swift */; };
 		CA213AE526D5636800471F8C /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA213AE426D5636800471F8C /* NavigationController.swift */; };
+		CA213AE726D77DCA00471F8C /* ImageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA213AE626D77DCA00471F8C /* ImageService.swift */; };
 		CA327B7826BEF28100B6EBE5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA327B7726BEF28100B6EBE5 /* AppDelegate.swift */; };
 		CA327B7A26BEF28100B6EBE5 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA327B7926BEF28100B6EBE5 /* SceneDelegate.swift */; };
 		CA327B7C26BEF28100B6EBE5 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA327B7B26BEF28100B6EBE5 /* TableViewController.swift */; };
@@ -51,6 +52,7 @@
 		CA132C1026D019AF00AC11FA /* FavoriteRecipe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteRecipe.swift; sourceTree = "<group>"; };
 		CA213AE226D562BB00471F8C /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		CA213AE426D5636800471F8C /* NavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
+		CA213AE626D77DCA00471F8C /* ImageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageService.swift; sourceTree = "<group>"; };
 		CA327B7426BEF28100B6EBE5 /* Reciplease.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Reciplease.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA327B7726BEF28100B6EBE5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CA327B7926BEF28100B6EBE5 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -131,6 +133,7 @@
 			isa = PBXGroup;
 			children = (
 				CA327B8F26BF1D5B00B6EBE5 /* RecipeService.swift */,
+				CA213AE626D77DCA00471F8C /* ImageService.swift */,
 				CA49463826C2573D0069CD5C /* Reciplease.xcdatamodeld */,
 				CA00AE4C26CCFFF300D47685 /* Ingredient.swift */,
 				CA132C1026D019AF00AC11FA /* FavoriteRecipe.swift */,
@@ -306,6 +309,7 @@
 				CA213AE326D562BB00471F8C /* TabBarController.swift in Sources */,
 				CA327B9026BF1D5B00B6EBE5 /* RecipeService.swift in Sources */,
 				CA6CCD4526D13FED008E0970 /* SearchView.swift in Sources */,
+				CA213AE726D77DCA00471F8C /* ImageService.swift in Sources */,
 				CA6CCD4726D28C9A008E0970 /* InsertView.swift in Sources */,
 				CA213AE526D5636800471F8C /* NavigationController.swift in Sources */,
 				CA132C1126D019AF00AC11FA /* FavoriteRecipe.swift in Sources */,

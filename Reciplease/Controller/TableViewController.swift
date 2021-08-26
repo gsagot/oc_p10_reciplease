@@ -39,6 +39,7 @@ class TableViewController: UIViewController, UITableViewDelegate {
     }
     
     override func viewDidAppear(_ animated: Bool) {
+
         favoriteRecipes = FavoriteRecipe.all
         tableView.reloadData()
     }
@@ -81,12 +82,14 @@ extension  TableViewController: UITableViewDataSource {
         else {
             image = recipes.hits[indexPath.row].recipe.image
         }
-        RecipeService.shared.getImage(url: image, completionHandler: { (success, error, result) in
+        
+        ImageService.shared.getImage(url: image, completionHandler: { (success, error, result) in
             if success {
                 cell.backgroundView = UIImageView(image: UIImage(data: result!) )
                 cell.backgroundView?.contentMode = .scaleAspectFill
             }
         })
+         
         
         // Title
         if isFavorite {

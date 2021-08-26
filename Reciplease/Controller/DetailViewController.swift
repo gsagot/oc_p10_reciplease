@@ -53,6 +53,34 @@ class DetailViewController: UIViewController {
             
     }
     
+    override func viewDidDisappear(_ animated: Bool) {
+        // Don't stay on this view when user switch between Search and Favorite
+        navigationController?.popViewController(animated: true)
+    }
+    
+    //MARK: - RESET TEXT AND IMAGE
+    
+    override func viewWillAppear(_ animated: Bool) {
+        
+        // Image
+        ImageService.shared.getImage(url: currentImageName, completionHandler: { (success, error, result) in
+            if success { self.detailView.imageRecipe.image = UIImage(data: result!)}
+        })
+    
+        // Title
+        detailView.textRecipeTitle.text = currentTitle
+        
+        // Ingredients
+        detailView.textListOfIngredients.text = ""
+        
+        for i in 0..<ingredientLines.count {
+            detailView.textListOfIngredients.text?.append("\(ingredientLines[i])\n" )
+            
+        }
+        
+    }
+    
+    
     //MARK: - HANDLE USER INPUT
     
     @objc func handleAddFavorite(_ sender: UITapGestureRecognizer? = nil) {
@@ -76,28 +104,6 @@ class DetailViewController: UIViewController {
         if let url = URL(string: currentUrl) {
             UIApplication.shared.open(url)
         }
-    }
-    
-    //MARK: - RESET TEXT AND IMAGE
-    
-    override func viewWillAppear(_ animated: Bool) {
-        
-        // Image
-        RecipeService.shared.getImage(url: currentImageName, completionHandler: { (success, error, result) in
-            if success { self.detailView.imageRecipe.image = UIImage(data: result!)}
-        })
-    
-        // Title
-        detailView.textRecipeTitle.text = currentTitle
-        
-        // Ingredients
-        detailView.textListOfIngredients.text = ""
-        
-        for i in 0..<ingredientLines.count {
-            detailView.textListOfIngredients.text?.append("\(ingredientLines[i])\n" )
-            
-        }
-        
     }
     
     
@@ -125,7 +131,7 @@ extension DetailViewController {
         }
 
         navigationItem.rightBarButtonItem = UIBarButtonItem(customView: favoriteButton)
-        
+
   
     }
     

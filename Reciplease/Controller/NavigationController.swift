@@ -10,6 +10,7 @@ import UIKit
 class NavigationController: UINavigationController {
     
     var isFavorite = false
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,16 +21,15 @@ class NavigationController: UINavigationController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        self.popToRootViewController(animated: true)
+        //self.popToRootViewController(animated: true)
         if isFavorite {
             let vc  = self.viewControllers[0] as! TableViewController
             vc.isFavorite = true
         }
-        
 
-        
-        
+  
     }
+    
 
 
 }

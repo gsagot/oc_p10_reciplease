@@ -12,6 +12,7 @@ import UIKit
 class CellView : UITableViewCell {
     
     var title: UILabel!
+    var ingredientsView: UILabel!
     var insertView: InsertView!
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -24,8 +25,18 @@ class CellView : UITableViewCell {
         // Title
         title = UILabel()
         title.textColor = UIColor.white
-        title.font = UIFont(name: "helvetica", size: 18)
-        title.frame = CGRect(x: 0, y: 130, width: 400, height: 30)
+        title.font = UIFont(name: "helvetica-bold", size: 18)
+        title.frame = CGRect(x: 0, y: 110, width: 300, height: 30)
+        
+        // desciption
+        ingredientsView = UILabel()
+        ingredientsView.textColor = UIColor.white
+        ingredientsView.adjustsFontSizeToFitWidth = false
+        ingredientsView.lineBreakMode = .byTruncatingTail
+        ingredientsView.text = "Chicken, rice, tomatoe, mushroom"
+        ingredientsView.font = UIFont(name: "helvetica", size: 16)
+        ingredientsView.frame = CGRect(x: 0, y: 130, width: 300, height: 30)
+        
         
         // Insert
         insertView = InsertView(frame: CGRect(x: 300, y: 20, width: 120, height: 90))
@@ -33,6 +44,7 @@ class CellView : UITableViewCell {
         
         // Add to view
         self.addSubview(title)
+        self.addSubview(ingredientsView)
         self.addSubview(insertView)
         
     }

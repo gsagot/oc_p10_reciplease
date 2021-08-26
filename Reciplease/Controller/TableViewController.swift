@@ -18,7 +18,7 @@ class TableViewController: UIViewController, UITableViewDelegate {
     var recipes: Recipes!
     
     var favoriteRecipes:[FavoriteRecipe]!
-    var ingredients:[Ingredient]!
+    var ingredientLines:[String]!
     
     var isFavorite = false
     
@@ -39,7 +39,6 @@ class TableViewController: UIViewController, UITableViewDelegate {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-
         favoriteRecipes = FavoriteRecipe.all
         tableView.reloadData()
     }
@@ -97,6 +96,15 @@ extension  TableViewController: UITableViewDataSource {
         }
         else{
             cell.title.text = recipes.hits[indexPath.row].recipe.label
+        }
+        
+        // Desciption
+        if isFavorite {
+            ingredientLines = Ingredient.listOfIngredients(from: favoriteRecipes[indexPath.row].title!)
+            cell.ingredientsView.text = formatString(ingredientLines)
+        }
+        else {
+            cell.ingredientsView.text = formatString(recipes.hits[indexPath.row].recipe.ingredientLines)
         }
         
         // Gradient
@@ -168,6 +176,37 @@ extension  TableViewController: UITableViewDataSource {
         }else{
             return "N/A"
         }
+    }
+    
+    func formatString (_ recipe:[String])->String {
+        var string = String()
+        
+        for step in recipe {
+            
+            var ingredient = step.replacingOccurrences(of: "\\s?\\([\\w\\s]*\\)", with: "", options: .regularExpression)
+            ingredient = ingredient.components(separatedBy: CharacterSet.decimalDigits).joined()
+            ingredient = ingredient.components(separatedBy: CharacterSet.decimalDigits).joined()
+            ingredient = ingredient.components(separatedBy: CharacterSet.punctuationCharacters).joined()
+            
+            for substring in ingredient.components(separatedBy: " ") {
+                if substring.count < 3 {
+                    ingredient = ingredient.components(separatedBy: substring).joined()
+                }
+            }
+ 
+            ingredient = ingredient.replacingOccurrences(of: "  ", with: " ")
+            
+            string.append(ingredient)
+            string.append(",")
+        }
+        
+        if let i = string.lastIndex(of: ","){
+            string.remove(at: i)
+            string.append(".")
+        }
+       
+        return string
+
     }
     
     

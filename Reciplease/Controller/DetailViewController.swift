@@ -21,6 +21,9 @@ class DetailViewController: UIViewController {
     // MARK: - UI VARIABLES
     var detailView: DetailView!
     
+    var indicator = UIActivityIndicatorView()
+    
+    
     var topBarHeight:CGFloat {
         let window = UIApplication.shared.windows.filter {$0.isKeyWindow}.first
         let frameWindow = window?.windowScene?.statusBarManager?.statusBarFrame.height ?? 0
@@ -47,9 +50,11 @@ class DetailViewController: UIViewController {
         detailView = DetailView(frame: frame)
         self.view.addSubview(detailView)
         
-        // gesture recognizer
+        // Gesture recognizer
         let getDirection = UITapGestureRecognizer(target: self, action: #selector(self.handleGetDirections(_:)))
         self.detailView.buttonGetDirections.addGestureRecognizer(getDirection)
+        
+
             
     }
     
@@ -62,9 +67,14 @@ class DetailViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         
+        indicator.startAnimating()
+        
         // Image
         ImageService.shared.getImage(url: currentImageName, completionHandler: { (success, error, result) in
-            if success { self.detailView.imageRecipe.image = UIImage(data: result!)}
+            if success {
+                self.detailView.imageRecipe.image = UIImage(data: result!)
+                self.indicator.stopAnimating()
+            }
         })
     
         // Title
@@ -115,7 +125,11 @@ extension DetailViewController {
     
     func customizeNavigationItems() {
         // Attempt to customize navigation controller...
+        
+        // title
         self.navigationItem.title = "Reciplease"
+        
+        // items
         let favoriteButton = UIButton(type: .system)
         
         if isFavorite {
@@ -129,8 +143,15 @@ extension DetailViewController {
             favoriteButton.addGestureRecognizer(addFavorite)
             
         }
-
-        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: favoriteButton)
+        
+        // Indicator
+        indicator.frame = CGRect(x: 0, y: 0, width: 20, height: 20)
+        indicator.color = UIColor.white
+        indicator.hidesWhenStopped = true
+     
+      
+        
+        navigationItem.rightBarButtonItems = [UIBarButtonItem(customView: indicator),UIBarButtonItem(customView: favoriteButton)]
 
   
     }

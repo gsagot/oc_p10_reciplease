@@ -12,6 +12,8 @@ class TableViewController: UIViewController, UITableViewDelegate {
     //MARK: - UI VARIABLES
     
     @IBOutlet var tableView: UITableView!
+    
+    var indicator = UIActivityIndicatorView()
    
     //MARK: - DATA VARIABLES
     
@@ -32,9 +34,15 @@ class TableViewController: UIViewController, UITableViewDelegate {
         // Prepare array with from persistent data
         favoriteRecipes = FavoriteRecipe.all
         
-        // delegate things ...
+        // Delegate things ...
         tableView.delegate = self
         tableView.dataSource = self
+        
+        // Indicator
+        indicator.frame = CGRect(x: 0, y: 0, width: 20, height: 20)
+        indicator.color = UIColor.white
+        indicator.hidesWhenStopped = true
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: indicator)
         
     }
     
@@ -70,6 +78,9 @@ extension  TableViewController: UITableViewDataSource {
     
     // Arrange Cell
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        indicator.startAnimating()
+        
         // Customized cell
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! CellView
         
@@ -121,6 +132,8 @@ extension  TableViewController: UITableViewDataSource {
             cell.insertView.textYield.text = String(recipes.hits[indexPath.row].recipe.yield)
             cell.insertView.textTime.text = timeToString(interval: recipes.hits[indexPath.row].recipe.totalTime )
         }
+
+        indicator.stopAnimating()
         
         // Ready
         return cell

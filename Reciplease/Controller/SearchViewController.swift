@@ -20,6 +20,8 @@ class SearchViewController: UIViewController {
     
     var searchView:SearchView!
     
+    var indicator = UIActivityIndicatorView()
+    
     var topBarHeight:CGFloat {
         let window = UIApplication.shared.windows.filter {$0.isKeyWindow}.first
         let frameWindow = window?.windowScene?.statusBarManager?.statusBarFrame.height ?? 0
@@ -42,7 +44,7 @@ class SearchViewController: UIViewController {
         searchView = SearchView(frame: frame)
         self.view.addSubview(searchView)
         
-        // gesture recognizer
+        // Gesture recognizer
         let tap = UITapGestureRecognizer(target: self, action: #selector(self.handleTap(_:)))
         self.view.addGestureRecognizer(tap)
         
@@ -54,6 +56,14 @@ class SearchViewController: UIViewController {
         
         let clear = UITapGestureRecognizer(target: self, action: #selector(self.handleClear(_:)))
         self.searchView.buttonClearList.addGestureRecognizer(clear)
+        
+        // Indicator
+        indicator.frame = CGRect(x: 0, y: 0, width: 20, height: 20)
+        indicator.color = UIColor.white
+        indicator.hidesWhenStopped = true
+        
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: indicator)
+        
         
     }
     
@@ -70,7 +80,7 @@ class SearchViewController: UIViewController {
     
     // Request
     @objc func handleSearch(_ sender: UITapGestureRecognizer? = nil) {
-        
+        indicator.startAnimating()
         RecipeService.shared.getRecipes(query:search ,completionHandler: { (success, error, recipes) in
             if success{
                 self.recipes = recipes
@@ -88,6 +98,7 @@ class SearchViewController: UIViewController {
             self.firstSearch = false
             // Push it onto the navigation controller
             vc.recipes = recipes
+            indicator.stopAnimating()
             self.navigationController?.pushViewController(vc, animated: true)
         }
     }

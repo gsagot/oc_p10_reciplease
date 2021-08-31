@@ -29,11 +29,9 @@ class ImageService {
         ImageService.shared = ImageService()
     }
     
-    func cancelRequest(){
-        sessionManager.cancelAllRequests()
-    }
-    
     func getImage(url:String, completionHandler: @escaping ((Bool, String?, Data? ) -> Void)) {
+        
+        sessionManager.cancelAllRequests()
         
         sessionManager.request(url).response { response in
             

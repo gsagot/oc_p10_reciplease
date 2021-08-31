@@ -40,10 +40,8 @@ public class FavoriteRecipe: NSManagedObject {
         }
  
         // Save context
-        guard ((try? AppDelegate.viewContext.save()) != nil) else {
-            print ("An error occured please try again... ")
-            return
-        }
+        guard ((try? AppDelegate.viewContext.save()) != nil) else {return}
+        
     }
     
     //MARK: - DELETE A RECIPE
@@ -56,13 +54,8 @@ public class FavoriteRecipe: NSManagedObject {
 
         let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
         
-
-        do {
-            try AppDelegate.viewContext.execute(deleteRequest)
-        } catch let error as NSError {
-            print(error)
-        }
-        
+        guard ((try? AppDelegate.viewContext.execute(deleteRequest)) != nil) else {return}
+    
     }
     
     //MARK: - DELETE ALL RECIPES
@@ -74,21 +67,15 @@ public class FavoriteRecipe: NSManagedObject {
         var fetchRequest: NSFetchRequest<NSFetchRequestResult> = NSFetchRequest(entityName: "FavoriteRecipe")
         var deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
       
-
-        do {
-            try AppDelegate.viewContext.execute(deleteRequest)
-        } catch let error as NSError {
-            print(error)
-        }
+        guard ((try? AppDelegate.viewContext.execute(deleteRequest)) != nil)else{return}
         
         fetchRequest = NSFetchRequest(entityName: "Ingredient")
         deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
- 
-        do {
-            try AppDelegate.viewContext.execute(deleteRequest)
-        } catch let error as NSError {
-            print(error)
-        }
+        
+        try! AppDelegate.viewContext.execute(deleteRequest)
+        
+        guard ((try? AppDelegate.viewContext.execute(deleteRequest)) != nil)else{return}
+
           
     }
     

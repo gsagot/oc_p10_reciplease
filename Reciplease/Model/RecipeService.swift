@@ -29,10 +29,6 @@ class RecipeService {
         RecipeService.shared = RecipeService()
     }
     
-    func cancelRequest(){
-        sessionManager.cancelAllRequests()
-    }
-    
     func getRecipes(query:String, completionHandler: @escaping ((Bool, String?, Recipes? ) -> Void)) {
         
         let url = "https://api.edamam.com/api/recipes/v2"
@@ -43,7 +39,7 @@ class RecipeService {
                                                  "ingr": "3-8"]
         
         
-       
+        sessionManager.cancelAllRequests()
         
         sessionManager.request(url, parameters: queryParameters).responseDecodable(of: Recipes.self) { response in
             

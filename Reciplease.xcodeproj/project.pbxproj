@@ -34,6 +34,9 @@
 		CA893BBC26C33B30002135C5 /* FakeResponseData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA893BBB26C33B30002135C5 /* FakeResponseData.swift */; };
 		CA893BBE26C33BD2002135C5 /* Edamam.json in Resources */ = {isa = PBXBuildFile; fileRef = CA893BBD26C33BD2002135C5 /* Edamam.json */; };
 		CA893BC026C33CA6002135C5 /* FakeURLProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA893BBF26C33CA6002135C5 /* FakeURLProtocol.swift */; };
+		CAA4AB7226DD19E500CF775B /* CoreDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAA4AB7126DD19E500CF775B /* CoreDataStore.swift */; };
+		CAA4AB7426DD286000CF775B /* CoreDataTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAA4AB7326DD286000CF775B /* CoreDataTests.swift */; };
+		CAA4AB7626DD3A7200CF775B /* ImageServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAA4AB7526DD3A7200CF775B /* ImageServiceTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -77,6 +80,9 @@
 		CA893BBB26C33B30002135C5 /* FakeResponseData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeResponseData.swift; sourceTree = "<group>"; };
 		CA893BBD26C33BD2002135C5 /* Edamam.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Edamam.json; sourceTree = "<group>"; };
 		CA893BBF26C33CA6002135C5 /* FakeURLProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeURLProtocol.swift; sourceTree = "<group>"; };
+		CAA4AB7126DD19E500CF775B /* CoreDataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStore.swift; sourceTree = "<group>"; };
+		CAA4AB7326DD286000CF775B /* CoreDataTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataTests.swift; sourceTree = "<group>"; };
+		CAA4AB7526DD3A7200CF775B /* ImageServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageServiceTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -139,6 +145,7 @@
 				CA132C1026D019AF00AC11FA /* FavoriteRecipe.swift */,
 				CA327B9126BF1EB800B6EBE5 /* Recipes.swift */,
 				CA327B9326BF2B8500B6EBE5 /* Edamam.json */,
+				CAA4AB7126DD19E500CF775B /* CoreDataStore.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -182,6 +189,8 @@
 			isa = PBXGroup;
 			children = (
 				CA893BB326C339F2002135C5 /* RecipeServiceTests.swift */,
+				CAA4AB7526DD3A7200CF775B /* ImageServiceTests.swift */,
+				CAA4AB7326DD286000CF775B /* CoreDataTests.swift */,
 				CA893BBF26C33CA6002135C5 /* FakeURLProtocol.swift */,
 				CA893BBD26C33BD2002135C5 /* Edamam.json */,
 				CA893BBB26C33B30002135C5 /* FakeResponseData.swift */,
@@ -308,6 +317,7 @@
 				CA327B7A26BEF28100B6EBE5 /* SceneDelegate.swift in Sources */,
 				CA213AE326D562BB00471F8C /* TabBarController.swift in Sources */,
 				CA327B9026BF1D5B00B6EBE5 /* RecipeService.swift in Sources */,
+				CAA4AB7226DD19E500CF775B /* CoreDataStore.swift in Sources */,
 				CA6CCD4526D13FED008E0970 /* SearchView.swift in Sources */,
 				CA213AE726D77DCA00471F8C /* ImageService.swift in Sources */,
 				CA6CCD4726D28C9A008E0970 /* InsertView.swift in Sources */,
@@ -323,8 +333,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CAA4AB7426DD286000CF775B /* CoreDataTests.swift in Sources */,
 				CA893BB426C339F2002135C5 /* RecipeServiceTests.swift in Sources */,
 				CA893BBC26C33B30002135C5 /* FakeResponseData.swift in Sources */,
+				CAA4AB7626DD3A7200CF775B /* ImageServiceTests.swift in Sources */,
 				CA893BC026C33CA6002135C5 /* FakeURLProtocol.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

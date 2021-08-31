@@ -19,7 +19,7 @@ class CoreDataStore {
     
     
     init(_ storageType: StorageType = .persistent) {
-        print("new init")
+
         self.persistentContainer = NSPersistentContainer(name: "Reciplease")
         
         if storageType == .inMemory {

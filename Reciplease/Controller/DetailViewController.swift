@@ -10,13 +10,17 @@ import UIKit
 class DetailViewController: UIViewController {
     
     // MARK: - DATA VARIABLES
+    /*
     var currentImageName:String!
     var currentTitle:String!
     var ingredientLines:[String]!
     var currentYield:Double!
     var currentTotalTime:Double!
     var currentUrl:String!
+     */
+
     var isFavorite:Bool!
+    var currentRecipe: Presentable!
     
     // MARK: - UI VARIABLES
     var detailView: DetailView!
@@ -70,7 +74,7 @@ class DetailViewController: UIViewController {
         indicator.startAnimating()
         
         // Image
-        ImageService.shared.getImage(url: currentImageName, completionHandler: { (success, error, result) in
+        ImageService.shared.getImage(url: currentRecipe.image, completionHandler: { (success, error, result) in
             if success {
                 self.detailView.imageRecipe.image = UIImage(data: result!)
                 self.indicator.stopAnimating()
@@ -78,13 +82,13 @@ class DetailViewController: UIViewController {
         })
     
         // Title
-        detailView.textRecipeTitle.text = currentTitle
+        detailView.textRecipeTitle.text = currentRecipe.label
         
         // Ingredients
         detailView.textListOfIngredients.text = ""
         
-        for i in 0..<ingredientLines.count {
-            detailView.textListOfIngredients.text?.append("\(ingredientLines[i])\n" )
+        for i in 0..<currentRecipe.ingredientLines.count {
+            detailView.textListOfIngredients.text?.append("\(currentRecipe.ingredientLines[i])\n" )
             
         }
         
@@ -94,24 +98,24 @@ class DetailViewController: UIViewController {
     //MARK: - HANDLE USER INPUT
     
     @objc func handleAddFavorite(_ sender: UITapGestureRecognizer? = nil) {
-        FavoriteRecipe.saveRecipeToFavorite(title: currentTitle!,
-                                            image: currentImageName!,
-                                            ingredients: ingredientLines,
-                                            yield: currentYield,
-                                            totalTime: currentTotalTime,
-                                            url:currentUrl)
+        FavoriteRecipe.saveRecipeToFavorite(title: currentRecipe.label,
+                                            image: currentRecipe.image,
+                                            ingredients: currentRecipe.ingredientLines,
+                                            yield: currentRecipe.yield,
+                                            totalTime: currentRecipe.totalTime,
+                                            url:currentRecipe.url)
         isFavorite = true
         customizeNavigationItems()
     }
     
     @objc func handleDeleteFromFavorite(_ sender: UITapGestureRecognizer? = nil) {
-        FavoriteRecipe.deleteRecipe(title: currentTitle)
+        FavoriteRecipe.deleteRecipe(title: currentRecipe.label)
         isFavorite = false
         customizeNavigationItems()
     }
     
     @objc func handleGetDirections(_ sender: UITapGestureRecognizer? = nil) {
-        if let url = URL(string: currentUrl) {
+        if let url = URL(string: currentRecipe.url) {
             UIApplication.shared.open(url)
         }
     }

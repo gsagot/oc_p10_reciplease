@@ -14,9 +14,26 @@ public class FavoriteRecipe: NSManagedObject {
     //MARK: - GET ALL FAVORITE RECIPES
     
     static var all: [FavoriteRecipe] {
-        let requestRecipe: NSFetchRequest<FavoriteRecipe> = FavoriteRecipe.fetchRequest()
-        guard let resultRecipe = try? AppDelegate.viewContext.fetch(requestRecipe) else {return []}
-        return resultRecipe
+        let requestFavorite: NSFetchRequest<FavoriteRecipe> = FavoriteRecipe.fetchRequest()
+        guard let resultFavorite = try? AppDelegate.viewContext.fetch(requestFavorite) else {return []}
+        return resultFavorite
+    }
+    
+    //MARK: - PRESENTABLE PROTOCOL
+    
+    static func makePresentable(favorites:[FavoriteRecipe])->[Recipe] {
+        var recipes = [Recipe]()
+  
+        for recipe in favorites {
+            let ingredients = Ingredient.listOfIngredients(from: recipe.label!)
+            
+            let result  = Recipe(label: recipe.label!, image: recipe.image!, url: recipe.url!, yield: recipe.yield, ingredientLines: ingredients, totalTime: recipe.totalTime)
+            
+            recipes.append(result)
+            
+        }
+        
+        return recipes
     }
 
     //MARK: - ADD RECIPE TO FAVORITE
@@ -25,7 +42,7 @@ public class FavoriteRecipe: NSManagedObject {
         // Create object for recipe
         let recipe = FavoriteRecipe(context: AppDelegate.viewContext)
      
-        recipe.title = title
+        recipe.label = title
         recipe.image = image
         recipe.yield = yield
         recipe.totalTime = totalTime
@@ -49,7 +66,7 @@ public class FavoriteRecipe: NSManagedObject {
     static func deleteRecipe (title:String) {
         let fetchRequest: NSFetchRequest<NSFetchRequestResult> = NSFetchRequest(entityName: "FavoriteRecipe")
         let filter = title
-        let predicate = NSPredicate(format: "title = %@", filter)
+        let predicate = NSPredicate(format: "label = %@", filter)
         fetchRequest.predicate = predicate
 
         let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
@@ -81,3 +98,4 @@ public class FavoriteRecipe: NSManagedObject {
     
     
 }
+

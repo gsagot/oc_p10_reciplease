@@ -13,9 +13,9 @@ class SearchViewController: UIViewController {
     // MARK: - DATA VARIABLES
     
     var search = String()
-    var firstSearch = true
-    var recipes: Recipes!
     
+    var recipes:[Presentable]!
+
     // MARK: - UI VARIABLES
     
     var searchView:SearchView!
@@ -81,9 +81,9 @@ class SearchViewController: UIViewController {
     // Request
     @objc func handleSearch(_ sender: UITapGestureRecognizer? = nil) {
         indicator.startAnimating()
-        RecipeService.shared.getRecipes(query:search ,completionHandler: { (success, error, recipes) in
+        RecipeService.shared.getRecipes(query:search ,completionHandler: { (success, error) in
             if success{
-                self.recipes = recipes
+                self.recipes = RecipeService.shared.recipes
                 self.updateView()
             }else{
                 self.presentUIAlertController(title: "error", message: error!)
@@ -95,9 +95,9 @@ class SearchViewController: UIViewController {
     
     func updateView (){
         if let vc = self.storyboard?.instantiateViewController(withIdentifier: "Result") as? TableViewController {
-            self.firstSearch = false
-            // Push it onto the navigation controller
+            vc.isFavorite = false
             vc.recipes = recipes
+            // Push it onto the navigation controller
             indicator.stopAnimating()
             self.navigationController?.pushViewController(vc, animated: true)
         }

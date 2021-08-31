@@ -14,6 +14,7 @@
 		CA213AE326D562BB00471F8C /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA213AE226D562BB00471F8C /* TabBarController.swift */; };
 		CA213AE526D5636800471F8C /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA213AE426D5636800471F8C /* NavigationController.swift */; };
 		CA213AE726D77DCA00471F8C /* ImageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA213AE626D77DCA00471F8C /* ImageService.swift */; };
+		CA31BB9626DE7221003CBE46 /* Presentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA31BB9526DE7221003CBE46 /* Presentable.swift */; };
 		CA327B7826BEF28100B6EBE5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA327B7726BEF28100B6EBE5 /* AppDelegate.swift */; };
 		CA327B7A26BEF28100B6EBE5 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA327B7926BEF28100B6EBE5 /* SceneDelegate.swift */; };
 		CA327B7C26BEF28100B6EBE5 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA327B7B26BEF28100B6EBE5 /* TableViewController.swift */; };
@@ -22,7 +23,6 @@
 		CA327B8426BEF28300B6EBE5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CA327B8226BEF28300B6EBE5 /* LaunchScreen.storyboard */; };
 		CA327B9026BF1D5B00B6EBE5 /* RecipeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA327B8F26BF1D5B00B6EBE5 /* RecipeService.swift */; };
 		CA327B9226BF1EB800B6EBE5 /* Recipes.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA327B9126BF1EB800B6EBE5 /* Recipes.swift */; };
-		CA327B9426BF2B8500B6EBE5 /* Edamam.json in Resources */ = {isa = PBXBuildFile; fileRef = CA327B9326BF2B8500B6EBE5 /* Edamam.json */; };
 		CA327B9826C037FB00B6EBE5 /* CellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA327B9726C037FB00B6EBE5 /* CellView.swift */; };
 		CA327B9A26C1226500B6EBE5 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA327B9926C1226500B6EBE5 /* DetailViewController.swift */; };
 		CA327B9C26C1CB7000B6EBE5 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA327B9B26C1CB7000B6EBE5 /* SearchViewController.swift */; };
@@ -56,6 +56,7 @@
 		CA213AE226D562BB00471F8C /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		CA213AE426D5636800471F8C /* NavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationController.swift; sourceTree = "<group>"; };
 		CA213AE626D77DCA00471F8C /* ImageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageService.swift; sourceTree = "<group>"; };
+		CA31BB9526DE7221003CBE46 /* Presentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Presentable.swift; sourceTree = "<group>"; };
 		CA327B7426BEF28100B6EBE5 /* Reciplease.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Reciplease.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA327B7726BEF28100B6EBE5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CA327B7926BEF28100B6EBE5 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -66,7 +67,6 @@
 		CA327B8526BEF28300B6EBE5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CA327B8F26BF1D5B00B6EBE5 /* RecipeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeService.swift; sourceTree = "<group>"; };
 		CA327B9126BF1EB800B6EBE5 /* Recipes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recipes.swift; sourceTree = "<group>"; };
-		CA327B9326BF2B8500B6EBE5 /* Edamam.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Edamam.json; sourceTree = "<group>"; };
 		CA327B9726C037FB00B6EBE5 /* CellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellView.swift; sourceTree = "<group>"; };
 		CA327B9926C1226500B6EBE5 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		CA327B9B26C1CB7000B6EBE5 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
@@ -138,14 +138,12 @@
 		CA327B8B26BF1C1B00B6EBE5 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				CA327B8F26BF1D5B00B6EBE5 /* RecipeService.swift */,
-				CA213AE626D77DCA00471F8C /* ImageService.swift */,
+				CAA4AB7926DE570A00CF775B /* Services */,
 				CA49463826C2573D0069CD5C /* Reciplease.xcdatamodeld */,
 				CA00AE4C26CCFFF300D47685 /* Ingredient.swift */,
 				CA132C1026D019AF00AC11FA /* FavoriteRecipe.swift */,
-				CA327B9126BF1EB800B6EBE5 /* Recipes.swift */,
-				CA327B9326BF2B8500B6EBE5 /* Edamam.json */,
 				CAA4AB7126DD19E500CF775B /* CoreDataStore.swift */,
+				CA31BB9526DE7221003CBE46 /* Presentable.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -197,6 +195,16 @@
 				CA893BB526C339F2002135C5 /* Info.plist */,
 			);
 			path = RecipleaseTests;
+			sourceTree = "<group>";
+		};
+		CAA4AB7926DE570A00CF775B /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				CA327B8F26BF1D5B00B6EBE5 /* RecipeService.swift */,
+				CA213AE626D77DCA00471F8C /* ImageService.swift */,
+				CA327B9126BF1EB800B6EBE5 /* Recipes.swift */,
+			);
+			path = Services;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -285,7 +293,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CA327B9426BF2B8500B6EBE5 /* Edamam.json in Resources */,
 				CA327B8426BEF28300B6EBE5 /* LaunchScreen.storyboard in Resources */,
 				CA327B8126BEF28300B6EBE5 /* Assets.xcassets in Resources */,
 				CA327B7F26BEF28100B6EBE5 /* Main.storyboard in Resources */,
@@ -320,6 +327,7 @@
 				CAA4AB7226DD19E500CF775B /* CoreDataStore.swift in Sources */,
 				CA6CCD4526D13FED008E0970 /* SearchView.swift in Sources */,
 				CA213AE726D77DCA00471F8C /* ImageService.swift in Sources */,
+				CA31BB9626DE7221003CBE46 /* Presentable.swift in Sources */,
 				CA6CCD4726D28C9A008E0970 /* InsertView.swift in Sources */,
 				CA213AE526D5636800471F8C /* NavigationController.swift in Sources */,
 				CA132C1126D019AF00AC11FA /* FavoriteRecipe.swift in Sources */,

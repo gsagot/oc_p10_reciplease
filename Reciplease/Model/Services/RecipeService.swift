@@ -10,6 +10,7 @@ import Alamofire
 
 
 class RecipeService {
+    
     static var shared = RecipeService()
     
     private var sessionManager:Session = {
@@ -21,6 +22,8 @@ class RecipeService {
     
     private init () {}
     
+    private(set) var recipes = [Recipe]()
+    
     init(session:Session) {
         self.sessionManager = session
     }
@@ -29,7 +32,7 @@ class RecipeService {
         RecipeService.shared = RecipeService()
     }
     
-    func getRecipes(query:String, completionHandler: @escaping ((Bool, String?, Recipes? ) -> Void)) {
+    func getRecipes(query:String, completionHandler: @escaping ((Bool, String?) -> Void)) {
         
         let url = "https://api.edamam.com/api/recipes/v2"
         let queryParameters: [String: String] = ["type": "public",
@@ -45,17 +48,20 @@ class RecipeService {
             
             switch response.result {
             case .success(_):
-                print("success")
-                completionHandler(true,nil,response.value)
+                self.recipes.removeAll()
+                for i in response.value!.from...response.value!.to {
+                    self.recipes.append((response.value?.hits[i-1].recipe)!)
+                }
+                completionHandler(true,nil)
                 
             case .failure(let error):
                 
                 switch error {
                 
                 case .responseSerializationFailed(_):
-                    completionHandler(false,"An error occured, Please try again",nil)
+                    completionHandler(false,"An error occured, Please try again")
                 default:
-                    completionHandler(false,"Session task failed, Please check connection",nil)
+                    completionHandler(false,"Session task failed, Please check connection")
                 }// End error switch
             
             }// End response switch

@@ -11,17 +11,14 @@ class TableViewController: UIViewController, UITableViewDelegate {
     
     //MARK: - UI VARIABLES
     
-    @IBOutlet var tableView: UITableView!
+    @IBOutlet weak var tableView: UITableView!
     
     var indicator = UIActivityIndicatorView()
    
     //MARK: - DATA VARIABLES
     
-    var recipes: Recipes!
-    
-    var favoriteRecipes:[FavoriteRecipe]!
-    var ingredientLines:[String]!
-    
+    var recipes:[Presentable]!
+
     var isFavorite = false
     
     //MARK: - PREPARE
@@ -31,10 +28,12 @@ class TableViewController: UIViewController, UITableViewDelegate {
         // Do any additional setup after loading the view.
         
         self.navigationItem.title = "Reciplease"
-        
+      
         // Prepare array with from persistent data
-        favoriteRecipes = FavoriteRecipe.all
-        
+        if isFavorite{
+            recipes =  FavoriteRecipe.makePresentable(favorites: FavoriteRecipe.all)
+        }
+
         // Delegate things ...
         tableView.delegate = self
         tableView.dataSource = self
@@ -47,8 +46,11 @@ class TableViewController: UIViewController, UITableViewDelegate {
         
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        favoriteRecipes = FavoriteRecipe.all
+    override func viewWillAppear(_ animated: Bool) {
+        if isFavorite{
+            recipes =  FavoriteRecipe.makePresentable(favorites: FavoriteRecipe.all)
+        }
+        
         tableView.reloadData()
     }
     
@@ -61,15 +63,7 @@ extension  TableViewController: UITableViewDataSource {
     
     // Row number
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if isFavorite == true {
-            return favoriteRecipes.count
-        }
-        else if isFavorite == false {
-            return recipes.hits.count
-        }
-        else{
-            return 0
-        }
+            return recipes.count
     }
     
     // Row height
@@ -87,12 +81,7 @@ extension  TableViewController: UITableViewDataSource {
         
         // Image
         var image = String()
-        if isFavorite {
-            image = favoriteRecipes[indexPath.row].image!
-        }
-        else {
-            image = recipes.hits[indexPath.row].recipe.image
-        }
+        image = recipes[indexPath.row].image
         
         ImageService.shared.getImage(url: image, completionHandler: { (success, error, result) in
             if success {
@@ -101,23 +90,11 @@ extension  TableViewController: UITableViewDataSource {
             }
         })
          
-        
         // Title
-        if isFavorite {
-            cell.title.text = favoriteRecipes[indexPath.row].title
-        }
-        else{
-            cell.title.text = recipes.hits[indexPath.row].recipe.label
-        }
-        
+        cell.title.text = recipes[indexPath.row].label
+ 
         // Desciption
-        if isFavorite {
-            ingredientLines = Ingredient.listOfIngredients(from: favoriteRecipes[indexPath.row].title!)
-            cell.ingredientsView.text = formatString(ingredientLines)
-        }
-        else {
-            cell.ingredientsView.text = formatString(recipes.hits[indexPath.row].recipe.ingredientLines)
-        }
+        cell.ingredientsView.text = formatString(recipes[indexPath.row].ingredientLines)
         
         // Gradient
         cell.gradient(frame: cell.frame)
@@ -125,14 +102,8 @@ extension  TableViewController: UITableViewDataSource {
         // Insert
         cell.insertView.center.x = cell.frame.maxX - 60 - 10
         
-        if isFavorite {
-            cell.insertView.textYield.text = String(favoriteRecipes[indexPath.row].yield)
-            cell.insertView.textTime.text = timeToString(interval:favoriteRecipes[indexPath.row].totalTime)
-        }
-        else{
-            cell.insertView.textYield.text = String(recipes.hits[indexPath.row].recipe.yield)
-            cell.insertView.textTime.text = timeToString(interval: recipes.hits[indexPath.row].recipe.totalTime )
-        }
+        cell.insertView.textYield.text = String(recipes[indexPath.row].yield)
+        cell.insertView.textTime.text = timeToString(interval:recipes[indexPath.row].totalTime)
 
         indicator.stopAnimating()
         
@@ -146,38 +117,20 @@ extension  TableViewController: UITableViewDataSource {
         if let vc = storyboard?.instantiateViewController(withIdentifier: "Detail") as? DetailViewController {
             
             if isFavorite {
-                // Set its recipe property
-                vc.currentTitle = favoriteRecipes[indexPath.row].title
-                vc.currentImageName = favoriteRecipes[indexPath.row].image
-                vc.ingredientLines = Ingredient.listOfIngredients (from:favoriteRecipes[indexPath.row].title!)
                 vc.isFavorite = true
-                vc.currentYield = favoriteRecipes[indexPath.row].yield
-                vc.currentTotalTime = favoriteRecipes[indexPath.row].totalTime
-                vc.currentUrl = favoriteRecipes[indexPath.row].url
             }else {
-                // Set its recipe property
-                vc.currentTitle = recipes.hits[indexPath.row].recipe.label
-                vc.currentImageName = recipes.hits[indexPath.row].recipe.image
                 vc.isFavorite = false
-                vc.currentYield = recipes.hits[indexPath.row].recipe.yield
-                vc.currentTotalTime = recipes.hits[indexPath.row].recipe.totalTime
-                vc.currentUrl = recipes.hits[indexPath.row].recipe.url
-                
-                // Set its Ingredients list
-                var array = [String]()
-                for ingredient in recipes.hits[indexPath.row].recipe.ingredientLines {
-                    array.append(ingredient)
-                }
-                vc.ingredientLines = array
             }
             
+            vc.currentRecipe = recipes[indexPath.row]
             // Present controller
             navigationController?.pushViewController(vc, animated: true)
             
         }// End condition
         
     }// End function
-    
+ 
+
     //MARK: - UTILS
     
     func timeToString (interval:Double) ->String{
@@ -196,9 +149,7 @@ extension  TableViewController: UITableViewDataSource {
         var string = String()
         
         for step in recipe {
-            
             var ingredient = step.replacingOccurrences(of: "\\s?\\([\\w\\s]*\\)", with: "", options: .regularExpression)
-            ingredient = ingredient.components(separatedBy: CharacterSet.decimalDigits).joined()
             ingredient = ingredient.components(separatedBy: CharacterSet.decimalDigits).joined()
             ingredient = ingredient.components(separatedBy: CharacterSet.punctuationCharacters).joined()
             

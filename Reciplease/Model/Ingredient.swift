@@ -10,12 +10,13 @@ import CoreData
 
 
 public class Ingredient: NSManagedObject {
+    
     private var all:[Ingredient]!
     
     static func listOfIngredients (from recipe:String)-> [String]{
         // Request Ingredient
         let filter = recipe
-        let predicate = NSPredicate(format: "recipe.title = %@", filter)
+        let predicate = NSPredicate(format: "recipe.label = %@", filter)
         let requestIngredient: NSFetchRequest<Ingredient> = Ingredient.fetchRequest()
         requestIngredient.predicate = predicate
         requestIngredient.sortDescriptors = [NSSortDescriptor(key: "createdAt", ascending: true)]

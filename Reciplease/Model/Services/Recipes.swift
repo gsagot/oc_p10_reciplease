@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Recipe : Codable {
+struct Recipe: Codable, Presentable {
     var label: String
     var image: String
     var url: String
@@ -16,14 +16,21 @@ struct Recipe : Codable {
     var totalTime: Double
 }
 
-struct Hits : Codable {
+struct Hits: Codable {
     var recipe: Recipe
     
 }
 
-struct Recipes : Codable {
+struct Recipes: Codable {
     var from: Int
     var to: Int
     var hits:[Hits]
     
 }
+
+
+    
+    
+    
+
+

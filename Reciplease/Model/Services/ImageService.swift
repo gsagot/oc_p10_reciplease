@@ -11,7 +11,7 @@ import Alamofire
 
 class ImageService {
     static var shared = ImageService()
-    
+
     private var sessionManager:Session = {
       let configuration = URLSessionConfiguration.af.default
       //configuration.timeoutIntervalForRequest = 1
@@ -24,6 +24,8 @@ class ImageService {
     init(session:Session) {
         self.sessionManager = session
     }
+    
+
     
     func start(){
         ImageService.shared = ImageService()

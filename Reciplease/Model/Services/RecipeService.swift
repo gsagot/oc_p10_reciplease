@@ -42,7 +42,7 @@ class RecipeService {
                                                  "ingr": "3-8"]
         
         
-        sessionManager.cancelAllRequests()
+        //sessionManager.cancelAllRequests()
         
         sessionManager.request(url, parameters: queryParameters).responseDecodable(of: Recipes.self) { response in
             

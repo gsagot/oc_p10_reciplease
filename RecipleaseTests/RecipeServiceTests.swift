@@ -58,11 +58,10 @@ class RecipeServiceTests: XCTestCase {
         let recipeService = RecipeService(session: sessionTest)
         // When
         let expectation = XCTestExpectation(description: "Wait for queue change.")
-        recipeService.getRecipes (query: "Chicken", completionHandler:{ (success, error, current) in
+        recipeService.getRecipes (query: "Chicken", completionHandler:{ (success,error) in
         // Then
             XCTAssertFalse(success)
             XCTAssert(error == "Session task failed, Please check connection")
-            XCTAssertNil(current)
             expectation.fulfill()
         })
         wait(for: [expectation], timeout: 1)
@@ -86,11 +85,10 @@ class RecipeServiceTests: XCTestCase {
         let recipeService = RecipeService(session: sessionTest)
         // When
         let expectation = XCTestExpectation(description: "Wait for queue change.")
-        recipeService.getRecipes (query: "Chicken",completionHandler:{ (success, error, current) in
+        recipeService.getRecipes (query: "Chicken",completionHandler:{ (success,error) in
         // Then
             XCTAssertFalse(success)
             XCTAssert(error == "Session task failed, Please check connection")
-            XCTAssertNil(current)
             expectation.fulfill()
         })
         wait(for: [expectation], timeout: 1)
@@ -114,11 +112,10 @@ class RecipeServiceTests: XCTestCase {
         let recipeService = RecipeService(session: sessionTest)
         // When
         let expectation = XCTestExpectation(description: "Wait for queue change.")
-        recipeService.getRecipes (query: "Chicken",completionHandler:{ (success, error, current) in
+        recipeService.getRecipes (query: "Chicken",completionHandler:{ (success, error) in
         // Then
             XCTAssertFalse(success)
             XCTAssert(error == "An error occured, Please try again")
-            XCTAssertNil(current)
             expectation.fulfill()
         })
         wait(for: [expectation], timeout: 1)
@@ -142,11 +139,10 @@ class RecipeServiceTests: XCTestCase {
         let recipeService = RecipeService(session: sessionTest)
         // When
         let expectation = XCTestExpectation(description: "Wait for queue change.")
-        recipeService.getRecipes (query: "Chicken",completionHandler:{ (success, error, current) in
+        recipeService.getRecipes (query: "Chicken",completionHandler:{ (success, error) in
         // Then
             XCTAssertFalse(success)
             XCTAssert(error == "An error occured, Please try again")
-            XCTAssertNil(current)
             expectation.fulfill()
         })
         wait(for: [expectation], timeout: 1)
@@ -170,11 +166,10 @@ class RecipeServiceTests: XCTestCase {
         let recipeService = RecipeService(session: sessionTest)
         // When
         let expectation = XCTestExpectation(description: "Wait for queue change.")
-        recipeService.getRecipes (query: "Chicken",completionHandler:{ (success, error, current) in
+        recipeService.getRecipes (query: "Chicken",completionHandler:{ (success, error) in
         // Then
             XCTAssertTrue(success)
             XCTAssertNil(error)
-            XCTAssert(current?.hits[0].recipe.image == "https://www.edamam.com/web-img/022/0220c7b8467311195e2659e58cf40f5e.jpg")
             expectation.fulfill()
         })
         wait(for: [expectation], timeout: 1)

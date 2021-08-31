@@ -10,7 +10,7 @@ import XCTest
 @testable import Reciplease
 import CoreData
 
-class CoreDataTests: XCTestCase {
+class FavoriteRecipeTests: XCTestCase {
 
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
@@ -42,7 +42,7 @@ class CoreDataTests: XCTestCase {
         FavoriteRecipe.saveRecipeToFavorite(title:"title", image:"image", ingredients:[" one ingredient"], yield:0.0, totalTime:0.0, url:"https://openclassrooms.com")
         //Then
         XCTAssert(FavoriteRecipe.all.count == 1)
-        XCTAssert(FavoriteRecipe.all[0].title == "title")
+        XCTAssert(FavoriteRecipe.all[0].label == "title")
         XCTAssert(Ingredient.listOfIngredients(from: "title").count == 1)
     }
  
@@ -74,6 +74,20 @@ class CoreDataTests: XCTestCase {
         XCTAssert(FavoriteRecipe.all.count == 0)
       
        
+    }
+    
+    func testFavoriteRecipeShouldReturnPresentableRecipeWhenMakePresentable() {
+        //Given
+        AppDelegate.container = CoreDataStore(.inMemory).persistentContainer
+        FavoriteRecipe.deleteAllCoreDataItems()
+        //When
+        FavoriteRecipe.saveRecipeToFavorite(title:"title", image:"image", ingredients:[" first ingredient", "second ingredient"], yield:0.0, totalTime:0.0, url:"https://openclassrooms.com")
+
+        let presentable = FavoriteRecipe.makePresentable(favorites: FavoriteRecipe.all)
+        //Then
+        XCTAssert(presentable.count == 1)
+        XCTAssert(presentable[0].label == "title")
+        
     }
     
     

@@ -33,7 +33,7 @@ class ImageService {
     
     func getImage(url:String, completionHandler: @escaping ((Bool, String?, Data? ) -> Void)) {
         
-        sessionManager.cancelAllRequests()
+        //sessionManager.cancelAllRequests()
         
         sessionManager.request(url).response { response in
             

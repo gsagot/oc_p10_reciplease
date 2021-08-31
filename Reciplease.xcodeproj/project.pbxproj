@@ -35,7 +35,7 @@
 		CA893BBE26C33BD2002135C5 /* Edamam.json in Resources */ = {isa = PBXBuildFile; fileRef = CA893BBD26C33BD2002135C5 /* Edamam.json */; };
 		CA893BC026C33CA6002135C5 /* FakeURLProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA893BBF26C33CA6002135C5 /* FakeURLProtocol.swift */; };
 		CAA4AB7226DD19E500CF775B /* CoreDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAA4AB7126DD19E500CF775B /* CoreDataStore.swift */; };
-		CAA4AB7426DD286000CF775B /* CoreDataTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAA4AB7326DD286000CF775B /* CoreDataTests.swift */; };
+		CAA4AB7426DD286000CF775B /* FavoriteRecipeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAA4AB7326DD286000CF775B /* FavoriteRecipeTests.swift */; };
 		CAA4AB7626DD3A7200CF775B /* ImageServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAA4AB7526DD3A7200CF775B /* ImageServiceTests.swift */; };
 /* End PBXBuildFile section */
 
@@ -81,7 +81,7 @@
 		CA893BBD26C33BD2002135C5 /* Edamam.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Edamam.json; sourceTree = "<group>"; };
 		CA893BBF26C33CA6002135C5 /* FakeURLProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeURLProtocol.swift; sourceTree = "<group>"; };
 		CAA4AB7126DD19E500CF775B /* CoreDataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStore.swift; sourceTree = "<group>"; };
-		CAA4AB7326DD286000CF775B /* CoreDataTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataTests.swift; sourceTree = "<group>"; };
+		CAA4AB7326DD286000CF775B /* FavoriteRecipeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteRecipeTests.swift; sourceTree = "<group>"; };
 		CAA4AB7526DD3A7200CF775B /* ImageServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageServiceTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -188,7 +188,7 @@
 			children = (
 				CA893BB326C339F2002135C5 /* RecipeServiceTests.swift */,
 				CAA4AB7526DD3A7200CF775B /* ImageServiceTests.swift */,
-				CAA4AB7326DD286000CF775B /* CoreDataTests.swift */,
+				CAA4AB7326DD286000CF775B /* FavoriteRecipeTests.swift */,
 				CA893BBF26C33CA6002135C5 /* FakeURLProtocol.swift */,
 				CA893BBD26C33BD2002135C5 /* Edamam.json */,
 				CA893BBB26C33B30002135C5 /* FakeResponseData.swift */,
@@ -341,7 +341,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CAA4AB7426DD286000CF775B /* CoreDataTests.swift in Sources */,
+				CAA4AB7426DD286000CF775B /* FavoriteRecipeTests.swift in Sources */,
 				CA893BB426C339F2002135C5 /* RecipeServiceTests.swift in Sources */,
 				CA893BBC26C33B30002135C5 /* FakeResponseData.swift in Sources */,
 				CAA4AB7626DD3A7200CF775B /* ImageServiceTests.swift in Sources */,

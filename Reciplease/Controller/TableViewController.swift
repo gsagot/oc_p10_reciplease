@@ -14,6 +14,8 @@ class TableViewController: UIViewController, UITableViewDelegate {
     @IBOutlet weak var tableView: UITableView!
     
     var indicator = UIActivityIndicatorView()
+    
+    var officer = UILabel()
    
     //MARK: - DATA VARIABLES
     
@@ -38,6 +40,16 @@ class TableViewController: UIViewController, UITableViewDelegate {
         tableView.delegate = self
         tableView.dataSource = self
         
+        // Officer
+        officer.font = UIFont(name: "HelveticaNeue", size: 21)
+        officer.frame = CGRect(x: 10, y: 0, width: self.view.frame.width - 20, height: 200)
+        officer.center.y = self.view.center.y - 100
+        officer.textColor = .white
+        officer.numberOfLines = 0
+        officer.isHidden = true
+        officer.backgroundColor = .clear
+        self.view.addSubview(officer)
+     
         // Indicator
         indicator.frame = CGRect(x: 0, y: 0, width: 20, height: 20)
         indicator.color = UIColor.white
@@ -46,13 +58,22 @@ class TableViewController: UIViewController, UITableViewDelegate {
         
     }
     
-    override func viewWillAppear(_ animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         if isFavorite{
             recipes =  FavoriteRecipe.makePresentable(favorites: FavoriteRecipe.all)
+            if recipes.count == 0 {
+                officer.isHidden = false
+                
+                print (self.view.frame)
+                officer.text = "It's empty here ! Please make a search first, then choose a recipe. You should be able to add it in your favorite with the icon in the upper left "
+            }else {
+                officer.isHidden = true
+            }
         }
         
         tableView.reloadData()
     }
+
     
 }
 

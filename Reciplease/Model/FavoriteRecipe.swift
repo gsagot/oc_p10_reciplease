@@ -75,6 +75,17 @@ public class FavoriteRecipe: NSManagedObject {
     
     }
     
+    static func findRecipe (title:String)->Bool {
+        for favorite in all {
+            if favorite.label == title {
+                return true
+            }
+        }
+        return false
+    }
+    
+    
+    
     //MARK: - DELETE ALL RECIPES
     
     static func deleteAllCoreDataItems () {

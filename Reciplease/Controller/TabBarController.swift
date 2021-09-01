@@ -46,6 +46,7 @@ class TabBarController: UITabBarController{
         if item.title == "Favorite" {       
             let vc  = self.viewControllers![1] as! NavigationController
             vc.isFavorite = true
+            
         }
     }
 

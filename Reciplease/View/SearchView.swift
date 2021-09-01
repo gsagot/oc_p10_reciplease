@@ -46,7 +46,7 @@ class SearchView: UIView {
         
         // Buttons
         buttonAddLine = UIButton()
-        buttonAddLine.backgroundColor = UIColor.blue
+        buttonAddLine.backgroundColor = UIColor(red: 80/255, green: 140/255, blue: 80/255, alpha: 1.0)
         buttonAddLine.titleLabel?.font = UIFont(name: "Avenir", size: 24)
         buttonAddLine.setTitle("Add", for: .normal)
         buttonAddLine.setTitleColor(.white, for: .normal)
@@ -58,7 +58,7 @@ class SearchView: UIView {
         
         
         buttonRequest = UIButton()
-        buttonRequest.backgroundColor = UIColor.blue
+        buttonRequest.backgroundColor = UIColor(red: 80/255, green: 140/255, blue: 80/255, alpha: 1.0)
         buttonRequest.titleLabel?.font = UIFont(name: "Avenir", size: 24)
         buttonRequest.setTitle("Search for recipes", for: .normal)
         buttonRequest.setTitleColor(.white, for: .normal)

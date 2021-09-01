@@ -45,7 +45,7 @@ class DetailView: UIView {
         
         // Button
         buttonGetDirections = UIButton()
-        buttonGetDirections.backgroundColor = .blue
+        buttonGetDirections.backgroundColor = UIColor(red: 80/255, green: 140/255, blue: 80/255, alpha: 1.0)
         buttonGetDirections.setTitle("Get directions", for: .normal)
         buttonGetDirections.titleLabel?.font = UIFont(name: "Avenir", size: 24)
         buttonGetDirections.frame = CGRect(x: 30,

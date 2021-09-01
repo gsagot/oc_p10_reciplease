@@ -22,6 +22,8 @@ class CellView : UITableViewCell {
     required init?(coder: NSCoder) {
         super.init(coder: coder)
         
+        self.isAccessibilityElement = true
+        
         // Title
         title = UILabel()
         title.textColor = UIColor.white

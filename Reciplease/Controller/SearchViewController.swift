@@ -8,7 +8,7 @@
 import UIKit
 import Alamofire
 
-class SearchViewController: UIViewController {
+class SearchViewController: UIViewController, UITextFieldDelegate {
     
     // MARK: - DATA VARIABLES
     
@@ -64,6 +64,8 @@ class SearchViewController: UIViewController {
         
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: indicator)
         
+        // Delegate things
+        searchView.textEditable.delegate = self
         
     }
     
@@ -86,6 +88,7 @@ class SearchViewController: UIViewController {
                 self.recipes = RecipeService.shared.recipes
                 self.updateView()
             }else{
+                self.indicator.stopAnimating()
                 self.presentUIAlertController(title: "error", message: error!)
             }
         })
@@ -106,8 +109,8 @@ class SearchViewController: UIViewController {
     
     // Add Ingredient(s)
     @objc func handleAdd(_ sender: UITapGestureRecognizer? = nil) {
-        
-        if searchView.textEditable.text != nil {
+       
+        if searchView.textEditable.text != nil && searchView.textEditable.text != ""{
             
             let modifiedArray = searchView.textEditable.text.map { $0.components(separatedBy: ",") }
             
@@ -116,9 +119,12 @@ class SearchViewController: UIViewController {
                 searchView.textQuerryList.text?.append(" - \(modifiedArray![i])\n" )
             }// End loop
             
-        }// End condition
+        }else {
+            presentUIAlertController(title: "Info", message: "Please add some ingredients")
+            
+        }
         
-    }// End function
+    }
     
     
     // Delete Ingredient(s)
@@ -135,4 +141,9 @@ class SearchViewController: UIViewController {
     }
  
 }
+
+
+
+
+
 

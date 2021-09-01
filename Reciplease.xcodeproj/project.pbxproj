@@ -37,10 +37,18 @@
 		CAA4AB7226DD19E500CF775B /* CoreDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAA4AB7126DD19E500CF775B /* CoreDataStore.swift */; };
 		CAA4AB7426DD286000CF775B /* FavoriteRecipeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAA4AB7326DD286000CF775B /* FavoriteRecipeTests.swift */; };
 		CAA4AB7626DD3A7200CF775B /* ImageServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAA4AB7526DD3A7200CF775B /* ImageServiceTests.swift */; };
+		CADD95B326DF8B6400C5ED58 /* RecipleaseUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CADD95B226DF8B6400C5ED58 /* RecipleaseUITests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
 		CA893BB626C339F2002135C5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CA327B6C26BEF28100B6EBE5 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = CA327B7326BEF28100B6EBE5;
+			remoteInfo = Reciplease;
+		};
+		CADD95B526DF8B6400C5ED58 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = CA327B6C26BEF28100B6EBE5 /* Project object */;
 			proxyType = 1;
@@ -83,6 +91,9 @@
 		CAA4AB7126DD19E500CF775B /* CoreDataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStore.swift; sourceTree = "<group>"; };
 		CAA4AB7326DD286000CF775B /* FavoriteRecipeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteRecipeTests.swift; sourceTree = "<group>"; };
 		CAA4AB7526DD3A7200CF775B /* ImageServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageServiceTests.swift; sourceTree = "<group>"; };
+		CADD95B026DF8B6400C5ED58 /* RecipleaseUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RecipleaseUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		CADD95B226DF8B6400C5ED58 /* RecipleaseUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipleaseUITests.swift; sourceTree = "<group>"; };
+		CADD95B426DF8B6400C5ED58 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +112,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		CADD95AD26DF8B6400C5ED58 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -109,6 +127,7 @@
 			children = (
 				CA327B7626BEF28100B6EBE5 /* Reciplease */,
 				CA893BB226C339F2002135C5 /* RecipleaseTests */,
+				CADD95B126DF8B6400C5ED58 /* RecipleaseUITests */,
 				CA327B7526BEF28100B6EBE5 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -118,6 +137,7 @@
 			children = (
 				CA327B7426BEF28100B6EBE5 /* Reciplease.app */,
 				CA893BB126C339F2002135C5 /* RecipleaseTests.xctest */,
+				CADD95B026DF8B6400C5ED58 /* RecipleaseUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -207,6 +227,15 @@
 			path = Services;
 			sourceTree = "<group>";
 		};
+		CADD95B126DF8B6400C5ED58 /* RecipleaseUITests */ = {
+			isa = PBXGroup;
+			children = (
+				CADD95B226DF8B6400C5ED58 /* RecipleaseUITests.swift */,
+				CADD95B426DF8B6400C5ED58 /* Info.plist */,
+			);
+			path = RecipleaseUITests;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -248,6 +277,24 @@
 			productReference = CA893BB126C339F2002135C5 /* RecipleaseTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		CADD95AF26DF8B6400C5ED58 /* RecipleaseUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CADD95B926DF8B6400C5ED58 /* Build configuration list for PBXNativeTarget "RecipleaseUITests" */;
+			buildPhases = (
+				CADD95AC26DF8B6400C5ED58 /* Sources */,
+				CADD95AD26DF8B6400C5ED58 /* Frameworks */,
+				CADD95AE26DF8B6400C5ED58 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				CADD95B626DF8B6400C5ED58 /* PBXTargetDependency */,
+			);
+			name = RecipleaseUITests;
+			productName = RecipleaseUITests;
+			productReference = CADD95B026DF8B6400C5ED58 /* RecipleaseUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -261,6 +308,10 @@
 						CreatedOnToolsVersion = 12.5.1;
 					};
 					CA893BB026C339F2002135C5 = {
+						CreatedOnToolsVersion = 12.5.1;
+						TestTargetID = CA327B7326BEF28100B6EBE5;
+					};
+					CADD95AF26DF8B6400C5ED58 = {
 						CreatedOnToolsVersion = 12.5.1;
 						TestTargetID = CA327B7326BEF28100B6EBE5;
 					};
@@ -284,6 +335,7 @@
 			targets = (
 				CA327B7326BEF28100B6EBE5 /* Reciplease */,
 				CA893BB026C339F2002135C5 /* RecipleaseTests */,
+				CADD95AF26DF8B6400C5ED58 /* RecipleaseUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -304,6 +356,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				CA893BBE26C33BD2002135C5 /* Edamam.json in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CADD95AE26DF8B6400C5ED58 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -349,6 +408,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		CADD95AC26DF8B6400C5ED58 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CADD95B326DF8B6400C5ED58 /* RecipleaseUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -356,6 +423,11 @@
 			isa = PBXTargetDependency;
 			target = CA327B7326BEF28100B6EBE5 /* Reciplease */;
 			targetProxy = CA893BB626C339F2002135C5 /* PBXContainerItemProxy */;
+		};
+		CADD95B626DF8B6400C5ED58 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = CA327B7326BEF28100B6EBE5 /* Reciplease */;
+			targetProxy = CADD95B526DF8B6400C5ED58 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -575,6 +647,42 @@
 			};
 			name = Release;
 		};
+		CADD95B726DF8B6400C5ED58 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = RecipleaseUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = Lesath.RecipleaseUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Reciplease;
+			};
+			name = Debug;
+		};
+		CADD95B826DF8B6400C5ED58 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = RecipleaseUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = Lesath.RecipleaseUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Reciplease;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -601,6 +709,15 @@
 			buildConfigurations = (
 				CA893BB926C339F2002135C5 /* Debug */,
 				CA893BBA26C339F2002135C5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CADD95B926DF8B6400C5ED58 /* Build configuration list for PBXNativeTarget "RecipleaseUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CADD95B726DF8B6400C5ED58 /* Debug */,
+				CADD95B826DF8B6400C5ED58 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

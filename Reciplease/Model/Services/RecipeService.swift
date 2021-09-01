@@ -49,6 +49,10 @@ class RecipeService {
             switch response.result {
             case .success(_):
                 self.recipes.removeAll()
+                // Check if we have recipes
+                guard response.value!.to != 0 else { return completionHandler(false,"no recipe found") }
+                
+                // Save recipes with only wanted variables
                 for i in response.value!.from...response.value!.to {
                     self.recipes.append((response.value?.hits[i-1].recipe)!)
                 }

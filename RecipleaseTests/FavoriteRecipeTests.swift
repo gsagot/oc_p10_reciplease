@@ -90,6 +90,32 @@ class FavoriteRecipeTests: XCTestCase {
         
     }
     
+    func testFavoriteRecipeShouldFindRecipeWhenAlreadyExist() {
+        //Given
+        AppDelegate.container = CoreDataStore(.inMemory).persistentContainer
+        FavoriteRecipe.deleteAllCoreDataItems()
+        //When
+        FavoriteRecipe.saveRecipeToFavorite(title:"title", image:"image", ingredients:[" first ingredient", "second ingredient"], yield:0.0, totalTime:0.0, url:"https://openclassrooms.com")
+
+        //Then
+        let finded = FavoriteRecipe.findRecipe(title: "title")
+        XCTAssert(finded == true)
+        
+    }
+    
+    func testFavoriteRecipeShouldNotFindRecipeWhenNotExist() {
+        //Given
+        AppDelegate.container = CoreDataStore(.inMemory).persistentContainer
+        FavoriteRecipe.deleteAllCoreDataItems()
+        //When
+        FavoriteRecipe.saveRecipeToFavorite(title:"title", image:"image", ingredients:[" first ingredient", "second ingredient"], yield:0.0, totalTime:0.0, url:"https://openclassrooms.com")
+
+        //Then
+        let finded = FavoriteRecipe.findRecipe(title: "something")
+        XCTAssert(finded == false)
+        
+    }
+    
     
  
     

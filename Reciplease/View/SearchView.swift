@@ -36,7 +36,8 @@ class SearchView: UIView {
         // text
         textEditable = UITextField()
         textEditable.font = UIFont(name: "Avenir", size: 24)
-        textEditable.text = "Chicken, rice, tomatoe"
+        textEditable.text = nil
+        textEditable.placeholder = "Chicken, rice, tomatoe..."
         textEditable.frame = CGRect(x: 10,
                                     y: 50,
                                     width: frame.width - 100,

@@ -146,6 +146,7 @@ extension  TableViewController: UITableViewDataSource {
             }
             
             vc.currentRecipe = recipes[indexPath.row]
+           
             // Present controller
             navigationController?.pushViewController(vc, animated: true)
             

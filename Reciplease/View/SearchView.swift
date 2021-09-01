@@ -73,7 +73,7 @@ class SearchView: UIView {
         textQuerryList.backgroundColor = .init(white: 1, alpha: 0)
         textQuerryList.font = UIFont(name: "Chalkduster", size: 18)
         textQuerryList.textColor = .white
-        textQuerryList.text = "Your Ingredients :"
+        textQuerryList.text = "Your Ingredients : \n"
         textQuerryList.isSelectable = false
         textQuerryList.isEditable = false
         textQuerryList.frame = CGRect(x: 0,

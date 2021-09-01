@@ -111,8 +111,6 @@ class SearchViewController: UIViewController {
             
             let modifiedArray = searchView.textEditable.text.map { $0.components(separatedBy: ",") }
             
-            searchView.textQuerryList.text?.append("\n" )
-            
             for i in 0..<modifiedArray!.count {
                 search.append(modifiedArray![i] + " ")
                 searchView.textQuerryList.text?.append(" - \(modifiedArray![i])\n" )
@@ -126,7 +124,7 @@ class SearchViewController: UIViewController {
     // Delete Ingredient(s)
     @objc func handleClear(_ sender: UITapGestureRecognizer? = nil) {
         search = ""
-        searchView.textQuerryList.text = "Your Ingredients :"
+        searchView.textQuerryList.text = "Your Ingredients : \n"
         
     }
     

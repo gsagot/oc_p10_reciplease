@@ -107,8 +107,10 @@ extension  TableViewController: UITableViewDataSource {
         ImageService.shared.getImage(url: image, completionHandler: { (success, error, result) in
             if success {
                 cell.backgroundView = UIImageView(image: UIImage(data: result!) )
-                cell.backgroundView?.contentMode = .scaleAspectFill
+            }else {
+                cell.backgroundView = UIImageView(image: UIImage(named: "full-english") )
             }
+            cell.backgroundView?.contentMode = .scaleAspectFill
         })
          
         // Title

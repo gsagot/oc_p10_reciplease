@@ -14,7 +14,6 @@ class ImageService {
 
     private var sessionManager:Session = {
       let configuration = URLSessionConfiguration.af.default
-      //configuration.timeoutIntervalForRequest = 1
       configuration.waitsForConnectivity = false
       return Session(configuration: configuration)
     }()
@@ -31,11 +30,11 @@ class ImageService {
         ImageService.shared = ImageService()
     }
     
-    func getImage(url:String, completionHandler: @escaping ((Bool, String?, Data? ) -> Void)) {
+    func getImage(url:String?, completionHandler: @escaping ((Bool, String?, Data? ) -> Void)) {
         
         //sessionManager.cancelAllRequests()
-        
-        sessionManager.request(url).response { response in
+        guard let urlValide = url else {return completionHandler(false,nil,nil)}
+        sessionManager.request(urlValide).response { response in
             
             switch response.result {
             case .success(_):

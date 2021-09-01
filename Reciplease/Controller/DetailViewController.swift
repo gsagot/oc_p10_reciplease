@@ -77,8 +77,10 @@ class DetailViewController: UIViewController {
         ImageService.shared.getImage(url: currentRecipe.image, completionHandler: { (success, error, result) in
             if success {
                 self.detailView.imageRecipe.image = UIImage(data: result!)
-                self.indicator.stopAnimating()
+            }else {
+                self.detailView.imageRecipe.image = UIImage(named: "full-english")
             }
+            self.indicator.stopAnimating()
         })
     
         // Title

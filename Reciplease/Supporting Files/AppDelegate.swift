@@ -14,7 +14,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     // MARK: - DATA
     
-    static var container = CoreDataStore().persistentContainer
+    static var container = ContainerManager().persistentContainer
     
     static var persistentContainer: NSPersistentContainer {
         return (UIApplication.shared.delegate as! AppDelegate).persistentContainer

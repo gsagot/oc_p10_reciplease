@@ -34,7 +34,7 @@
 		CA893BBC26C33B30002135C5 /* FakeResponseData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA893BBB26C33B30002135C5 /* FakeResponseData.swift */; };
 		CA893BBE26C33BD2002135C5 /* Edamam.json in Resources */ = {isa = PBXBuildFile; fileRef = CA893BBD26C33BD2002135C5 /* Edamam.json */; };
 		CA893BC026C33CA6002135C5 /* FakeURLProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA893BBF26C33CA6002135C5 /* FakeURLProtocol.swift */; };
-		CAA4AB7226DD19E500CF775B /* CoreDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAA4AB7126DD19E500CF775B /* CoreDataStore.swift */; };
+		CAA4AB7226DD19E500CF775B /* ContainerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAA4AB7126DD19E500CF775B /* ContainerManager.swift */; };
 		CAA4AB7426DD286000CF775B /* FavoriteRecipeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAA4AB7326DD286000CF775B /* FavoriteRecipeTests.swift */; };
 		CAA4AB7626DD3A7200CF775B /* ImageServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAA4AB7526DD3A7200CF775B /* ImageServiceTests.swift */; };
 		CADD95B326DF8B6400C5ED58 /* RecipleaseUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CADD95B226DF8B6400C5ED58 /* RecipleaseUITests.swift */; };
@@ -88,7 +88,7 @@
 		CA893BBB26C33B30002135C5 /* FakeResponseData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeResponseData.swift; sourceTree = "<group>"; };
 		CA893BBD26C33BD2002135C5 /* Edamam.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Edamam.json; sourceTree = "<group>"; };
 		CA893BBF26C33CA6002135C5 /* FakeURLProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeURLProtocol.swift; sourceTree = "<group>"; };
-		CAA4AB7126DD19E500CF775B /* CoreDataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStore.swift; sourceTree = "<group>"; };
+		CAA4AB7126DD19E500CF775B /* ContainerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerManager.swift; sourceTree = "<group>"; };
 		CAA4AB7326DD286000CF775B /* FavoriteRecipeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteRecipeTests.swift; sourceTree = "<group>"; };
 		CAA4AB7526DD3A7200CF775B /* ImageServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageServiceTests.swift; sourceTree = "<group>"; };
 		CADD95B026DF8B6400C5ED58 /* RecipleaseUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RecipleaseUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -162,7 +162,6 @@
 				CA49463826C2573D0069CD5C /* Reciplease.xcdatamodeld */,
 				CA00AE4C26CCFFF300D47685 /* Ingredient.swift */,
 				CA132C1026D019AF00AC11FA /* FavoriteRecipe.swift */,
-				CAA4AB7126DD19E500CF775B /* CoreDataStore.swift */,
 				CA31BB9526DE7221003CBE46 /* Presentable.swift */,
 			);
 			path = Model;
@@ -197,6 +196,7 @@
 			isa = PBXGroup;
 			children = (
 				CA327B7726BEF28100B6EBE5 /* AppDelegate.swift */,
+				CAA4AB7126DD19E500CF775B /* ContainerManager.swift */,
 				CA327B7926BEF28100B6EBE5 /* SceneDelegate.swift */,
 				CA327B8026BEF28300B6EBE5 /* Assets.xcassets */,
 			);
@@ -383,7 +383,7 @@
 				CA327B7A26BEF28100B6EBE5 /* SceneDelegate.swift in Sources */,
 				CA213AE326D562BB00471F8C /* TabBarController.swift in Sources */,
 				CA327B9026BF1D5B00B6EBE5 /* RecipeService.swift in Sources */,
-				CAA4AB7226DD19E500CF775B /* CoreDataStore.swift in Sources */,
+				CAA4AB7226DD19E500CF775B /* ContainerManager.swift in Sources */,
 				CA6CCD4526D13FED008E0970 /* SearchView.swift in Sources */,
 				CA213AE726D77DCA00471F8C /* ImageService.swift in Sources */,
 				CA31BB9626DE7221003CBE46 /* Presentable.swift in Sources */,
@@ -651,6 +651,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = YT8Z52P22T;
 				INFOPLIST_FILE = RecipleaseUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -669,6 +670,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = YT8Z52P22T;
 				INFOPLIST_FILE = RecipleaseUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

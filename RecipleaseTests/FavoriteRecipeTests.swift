@@ -34,7 +34,7 @@ class FavoriteRecipeTests: XCTestCase {
 
     func testFavoriteRecipeShouldReturnOneEntityWhenAddOneEntity() {
         //Given
-        AppDelegate.container = CoreDataStore(.inMemory).persistentContainer
+        AppDelegate.container = ContainerManager(.inMemory).persistentContainer
         FavoriteRecipe.deleteAllCoreDataItems()
         //When
         
@@ -49,7 +49,7 @@ class FavoriteRecipeTests: XCTestCase {
     
     func testFavoriteRecipeShouldDeleteEntityWhenDeleteEntity() {
         //Given
-        AppDelegate.container = CoreDataStore(.inMemory).persistentContainer
+        AppDelegate.container = ContainerManager(.inMemory).persistentContainer
         FavoriteRecipe.deleteAllCoreDataItems()
         // With One entity
         FavoriteRecipe.saveRecipeToFavorite(title:"title", image:"image", ingredients:[" one ingredient"], yield:0.0, totalTime:0.0, url:"https://openclassrooms.com")
@@ -63,7 +63,7 @@ class FavoriteRecipeTests: XCTestCase {
     
     func testFavoriteRecipeShouldReturnEmptyArrayWhendeleteAllEntities() {
         //Given
-        AppDelegate.container = CoreDataStore(.inMemory).persistentContainer
+        AppDelegate.container = ContainerManager(.inMemory).persistentContainer
         FavoriteRecipe.deleteAllCoreDataItems()
         // With Two entities
         FavoriteRecipe.saveRecipeToFavorite(title:"title", image:"image", ingredients:[" first ingredient", "second ingredient"], yield:0.0, totalTime:0.0, url:"https://openclassrooms.com")
@@ -78,7 +78,7 @@ class FavoriteRecipeTests: XCTestCase {
     
     func testFavoriteRecipeShouldReturnPresentableRecipeWhenMakePresentable() {
         //Given
-        AppDelegate.container = CoreDataStore(.inMemory).persistentContainer
+        AppDelegate.container = ContainerManager(.inMemory).persistentContainer
         FavoriteRecipe.deleteAllCoreDataItems()
         //When
         FavoriteRecipe.saveRecipeToFavorite(title:"title", image:"image", ingredients:[" first ingredient", "second ingredient"], yield:0.0, totalTime:0.0, url:"https://openclassrooms.com")
@@ -92,7 +92,7 @@ class FavoriteRecipeTests: XCTestCase {
     
     func testFavoriteRecipeShouldFindRecipeWhenAlreadyExist() {
         //Given
-        AppDelegate.container = CoreDataStore(.inMemory).persistentContainer
+        AppDelegate.container = ContainerManager(.inMemory).persistentContainer
         FavoriteRecipe.deleteAllCoreDataItems()
         //When
         FavoriteRecipe.saveRecipeToFavorite(title:"title", image:"image", ingredients:[" first ingredient", "second ingredient"], yield:0.0, totalTime:0.0, url:"https://openclassrooms.com")
@@ -105,7 +105,7 @@ class FavoriteRecipeTests: XCTestCase {
     
     func testFavoriteRecipeShouldNotFindRecipeWhenNotExist() {
         //Given
-        AppDelegate.container = CoreDataStore(.inMemory).persistentContainer
+        AppDelegate.container = ContainerManager(.inMemory).persistentContainer
         FavoriteRecipe.deleteAllCoreDataItems()
         //When
         FavoriteRecipe.saveRecipeToFavorite(title:"title", image:"image", ingredients:[" first ingredient", "second ingredient"], yield:0.0, totalTime:0.0, url:"https://openclassrooms.com")

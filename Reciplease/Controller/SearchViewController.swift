@@ -8,7 +8,7 @@
 import UIKit
 import Alamofire
 
-class SearchViewController: UIViewController, UITextFieldDelegate {
+class SearchViewController: UIViewController {
     
     // MARK: - DATA VARIABLES
     
@@ -68,7 +68,7 @@ class SearchViewController: UIViewController, UITextFieldDelegate {
         searchView.textEditable.delegate = self
         
     }
-    
+
     
     // MARK: - ALERT CONTROLLER
     
@@ -140,6 +140,17 @@ class SearchViewController: UIViewController, UITextFieldDelegate {
         searchView.textEditable.resignFirstResponder()
     }
  
+}
+
+// MARK: - CONTROLLER EXTENSION 
+
+extension SearchViewController: UITextFieldDelegate {
+    // Keyboard enter
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        searchView.textEditable.resignFirstResponder()
+        return true
+    }
+    
 }
 
 

@@ -19,8 +19,6 @@ public class FavoriteRecipe: NSManagedObject {
         return resultFavorite
     }
     
-    //MARK: - PRESENTABLE PROTOCOL
-    
     static func makePresentable(favorites:[FavoriteRecipe])->[Recipe] {
         var recipes = [Recipe]()
   

@@ -41,11 +41,12 @@ class TableViewController: UIViewController, UITableViewDelegate {
         tableView.dataSource = self
         
         // Officer
-        officer.font = UIFont(name: "HelveticaNeue", size: 21)
+        officer.font = UIFont(name: "Chalkduster", size: 21)
         officer.frame = CGRect(x: 10, y: 0, width: self.view.frame.width - 20, height: 200)
         officer.center.y = self.view.center.y - 100
         officer.textColor = .white
         officer.numberOfLines = 0
+        officer.textAlignment = .justified
         officer.isHidden = true
         officer.backgroundColor = .clear
         self.view.addSubview(officer)
@@ -65,7 +66,7 @@ class TableViewController: UIViewController, UITableViewDelegate {
                 officer.isHidden = false
                 
                 print (self.view.frame)
-                officer.text = "It's empty here ! Please make a search first, then choose a recipe. You should be able to add it in your favorite with the icon in the upper left "
+                officer.text = "It's empty here ! Please make a search first, then choose a recipe. You will be able to add it in your favorite with the icon (star) in the upper right "
             }else {
                 officer.isHidden = true
             }
@@ -77,10 +78,9 @@ class TableViewController: UIViewController, UITableViewDelegate {
     
 }
 
+//MARK: - TABLEVIEW PROTOCOL
 
 extension  TableViewController: UITableViewDataSource {
-    
-    //MARK: - TABLEVIEW
     
     // Row number
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

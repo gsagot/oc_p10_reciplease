@@ -31,8 +31,7 @@ class ImageService {
     }
     
     func getImage(url:String?, completionHandler: @escaping ((Bool, String?, Data? ) -> Void)) {
-        
-        //sessionManager.cancelAllRequests()
+    
         guard let urlValide = url else {return completionHandler(false,nil,nil)}
         sessionManager.request(urlValide).response { response in
             

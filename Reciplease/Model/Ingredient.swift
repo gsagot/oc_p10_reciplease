@@ -11,8 +11,6 @@ import CoreData
 
 public class Ingredient: NSManagedObject {
     
-    private var all:[Ingredient]!
-    
     static func listOfIngredients (from recipe:String)-> [String]{
         // Request Ingredient
         let filter = recipe

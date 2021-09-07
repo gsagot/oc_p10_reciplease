@@ -7,24 +7,24 @@
 
 import Foundation
 
-struct Recipe: Codable, Presentable {
-    var label: String
-    var image: String
-    var url: String
-    var yield: Double
-    var ingredientLines:[String]
-    var totalTime: Double
+struct Recipe: Codable {
+    let label: String
+    let image: String
+    let url: String
+    let yield: Double
+    let ingredientLines:[String]
+    let totalTime: Double
 }
 
 struct Hits: Codable {
-    var recipe: Recipe
+    let recipe: Recipe
     
 }
 
 struct Recipes: Codable {
-    var from: Int
-    var to: Int
-    var hits:[Hits]
+    let from: Int
+    let to: Int
+    let hits:[Hits]
     
 }
 

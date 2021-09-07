@@ -15,7 +15,7 @@ class RecipeService {
     
     private var sessionManager:Session = {
       let configuration = URLSessionConfiguration.af.default
-      //configuration.timeoutIntervalForRequest = 1
+      
       configuration.waitsForConnectivity = false
       return Session(configuration: configuration)
     }()
@@ -42,7 +42,6 @@ class RecipeService {
                                                  "ingr": "3-8"]
         
         
-        //sessionManager.cancelAllRequests()
         
         sessionManager.request(url, parameters: queryParameters).responseDecodable(of: Recipes.self) { response in
             

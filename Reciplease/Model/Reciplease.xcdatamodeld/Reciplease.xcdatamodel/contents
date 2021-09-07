@@ -11,7 +11,7 @@
     <entity name="Ingredient" representedClassName=".Ingredient" syncable="YES" codeGenerationType="category">
         <attribute name="createdAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="name" optional="YES" attributeType="String"/>
-        <relationship name="recipe" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="FavoriteRecipe" inverseName="ingredient" inverseEntity="FavoriteRecipe"/>
+        <relationship name="recipe" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="FavoriteRecipe" inverseName="ingredient" inverseEntity="FavoriteRecipe"/>
     </entity>
     <elements>
         <element name="FavoriteRecipe" positionX="-180.06640625" positionY="-47.0703125" width="128" height="119"/>

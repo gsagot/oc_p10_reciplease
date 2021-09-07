@@ -39,7 +39,7 @@ class FavoriteRecipeTests: XCTestCase {
         //When
         
         // Add One entity
-        FavoriteRecipe.saveRecipeToFavorite(title:"title", image:"image", ingredients:[" one ingredient"], yield:0.0, totalTime:0.0, url:"https://openclassrooms.com")
+        FavoriteRecipe.saveRecipeToFavorite(title:"title", image:"image", ingredients:[" one ingredient"], yield:0.0, totalTime:0.0, url:"https://openclassrooms.com", completionHandler: {(result,error)->() in })
         //Then
         XCTAssert(FavoriteRecipe.all.count == 1)
         XCTAssert(FavoriteRecipe.all[0].label == "title")
@@ -52,13 +52,18 @@ class FavoriteRecipeTests: XCTestCase {
         AppDelegate.container = ContainerManager(.inMemory).persistentContainer
         FavoriteRecipe.deleteAllCoreDataItems()
         // With One entity
-        FavoriteRecipe.saveRecipeToFavorite(title:"title", image:"image", ingredients:[" one ingredient"], yield:0.0, totalTime:0.0, url:"https://openclassrooms.com")
+        FavoriteRecipe.saveRecipeToFavorite(title:"title", image:"image", ingredients:[" one ingredient"], yield:0.0, totalTime:0.0, url:"https://openclassrooms.com", completionHandler: {(result,error)->() in })
         
         //When
-        FavoriteRecipe.deleteRecipe(title: "title")
-        //Then
-        XCTAssert(FavoriteRecipe.all.count == 0)
+        FavoriteRecipe.deleteRecipe(title: "title", completionHandler: {(result,error)->() in
+            //Then
+            XCTAssertTrue(result)
+            XCTAssertNil(error)
+            XCTAssert(FavoriteRecipe.all.count == 0)
+        })
+   
        
+ 
     }
     
     func testFavoriteRecipeShouldReturnEmptyArrayWhendeleteAllEntities() {
@@ -66,14 +71,13 @@ class FavoriteRecipeTests: XCTestCase {
         AppDelegate.container = ContainerManager(.inMemory).persistentContainer
         FavoriteRecipe.deleteAllCoreDataItems()
         // With Two entities
-        FavoriteRecipe.saveRecipeToFavorite(title:"title", image:"image", ingredients:[" first ingredient", "second ingredient"], yield:0.0, totalTime:0.0, url:"https://openclassrooms.com")
-        FavoriteRecipe.saveRecipeToFavorite(title:"title2", image:"image2", ingredients:[" one ingredient"], yield:0.0, totalTime:0.0, url:"https://openclassrooms.com")
+        FavoriteRecipe.saveRecipeToFavorite(title:"title", image:"image", ingredients:[" first ingredient", "second ingredient"], yield:0.0, totalTime:0.0, url:"https://openclassrooms.com",completionHandler: {(result,error)->() in})
+        FavoriteRecipe.saveRecipeToFavorite(title:"title2", image:"image2", ingredients:[" one ingredient"], yield:0.0, totalTime:0.0, url:"https://openclassrooms.com",completionHandler: {(result,error)->() in})
         //When
         FavoriteRecipe.deleteAllCoreDataItems()
         //Then
         XCTAssert(FavoriteRecipe.all.count == 0)
-      
-       
+        
     }
     
     func testFavoriteRecipeShouldReturnPresentableRecipeWhenMakePresentable() {
@@ -81,7 +85,7 @@ class FavoriteRecipeTests: XCTestCase {
         AppDelegate.container = ContainerManager(.inMemory).persistentContainer
         FavoriteRecipe.deleteAllCoreDataItems()
         //When
-        FavoriteRecipe.saveRecipeToFavorite(title:"title", image:"image", ingredients:[" first ingredient", "second ingredient"], yield:0.0, totalTime:0.0, url:"https://openclassrooms.com")
+        FavoriteRecipe.saveRecipeToFavorite(title:"title", image:"image", ingredients:[" first ingredient", "second ingredient"], yield:0.0, totalTime:0.0, url:"https://openclassrooms.com",completionHandler: {(result,error)->() in})
 
         let presentable = FavoriteRecipe.makePresentable(favorites: FavoriteRecipe.all)
         //Then
@@ -95,7 +99,9 @@ class FavoriteRecipeTests: XCTestCase {
         AppDelegate.container = ContainerManager(.inMemory).persistentContainer
         FavoriteRecipe.deleteAllCoreDataItems()
         //When
-        FavoriteRecipe.saveRecipeToFavorite(title:"title", image:"image", ingredients:[" first ingredient", "second ingredient"], yield:0.0, totalTime:0.0, url:"https://openclassrooms.com")
+        FavoriteRecipe.saveRecipeToFavorite(title:"title", image:"image", ingredients:[" first ingredient", "second ingredient"], yield:0.0, totalTime:0.0, url:"https://openclassrooms.com", completionHandler: {(result,error)->() in
+            
+        })
 
         //Then
         let finded = FavoriteRecipe.findRecipe(title: "title")
@@ -108,7 +114,7 @@ class FavoriteRecipeTests: XCTestCase {
         AppDelegate.container = ContainerManager(.inMemory).persistentContainer
         FavoriteRecipe.deleteAllCoreDataItems()
         //When
-        FavoriteRecipe.saveRecipeToFavorite(title:"title", image:"image", ingredients:[" first ingredient", "second ingredient"], yield:0.0, totalTime:0.0, url:"https://openclassrooms.com")
+        FavoriteRecipe.saveRecipeToFavorite(title:"title", image:"image", ingredients:[" first ingredient", "second ingredient"], yield:0.0, totalTime:0.0, url:"https://openclassrooms.com", completionHandler: {(result,error)->() in})
 
         //Then
         let finded = FavoriteRecipe.findRecipe(title: "something")

@@ -14,7 +14,7 @@ class SearchViewController: UIViewController {
     
     var search = String()
     
-    var recipes:[Presentable]!
+    var recipes:[Recipe]!
 
     // MARK: - UI VARIABLES
     

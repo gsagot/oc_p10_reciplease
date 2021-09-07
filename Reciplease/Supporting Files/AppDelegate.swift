@@ -12,7 +12,7 @@ import CoreData
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
-    // MARK: - DATA
+    // MARK: - COREDATA
     
     static var container = ContainerManager().persistentContainer
     
@@ -29,7 +29,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return persistentContainer.viewContext
     }
 
-    // END DATA
+    // END COREDATA
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.

@@ -19,7 +19,7 @@ class TableViewController: UIViewController, UITableViewDelegate {
    
     //MARK: - DATA VARIABLES
     
-    var recipes:[Presentable]!
+    var recipes:[Recipe]!
 
     var isFavorite = false
     

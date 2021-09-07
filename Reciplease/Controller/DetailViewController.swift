@@ -12,7 +12,7 @@ class DetailViewController: UIViewController {
     // MARK: - DATA VARIABLES
 
     var isFavorite:Bool!
-    var currentRecipe: Presentable!
+    var currentRecipe: Recipe!
     
     // MARK: - UI VARIABLES
     var detailView: DetailView!
@@ -37,7 +37,7 @@ class DetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-       
+        // print (Ingredient.all.count)
         // Navigation layout
         customizeNavigationItems()
         
@@ -109,20 +109,38 @@ class DetailViewController: UIViewController {
                                                 ingredients: currentRecipe.ingredientLines,
                                                 yield: currentRecipe.yield,
                                                 totalTime: currentRecipe.totalTime,
-                                                url:currentRecipe.url)
-            isFavorite = true
-            customizeNavigationItems()
-            presentUIAlertController(title: "Info", message: "Recipe saved")
+                                                url:currentRecipe.url,
+                                                completionHandler: {(result,error)->() in
+                                                    if result {
+                                                        isFavorite = true
+                                                        customizeNavigationItems()
+                                                        presentUIAlertController(title: "Info", message: "Recipe saved")
+                                                        
+                                                    }else {
+                                                        presentUIAlertController(title: "error", message: "An error occured, please try again")
+                                                        
+                                                    }
+                                                })
+            
             
         }
         
     }
     
     @objc func handleDeleteFromFavorite(_ sender: UITapGestureRecognizer? = nil) {
-        FavoriteRecipe.deleteRecipe(title: currentRecipe.label)
-        isFavorite = false
-        customizeNavigationItems()
-        presentUIAlertController(title: "Info", message: "Recipe deleted")
+        FavoriteRecipe.deleteRecipe(title: currentRecipe.label,
+                                    completionHandler: {(result,error)->() in
+                                        if result {
+                                            isFavorite = false
+                                            customizeNavigationItems()
+                                            presentUIAlertController(title: "Info", message: "Recipe deleted")
+                                            
+                                        }else {
+                                            presentUIAlertController(title: "error", message: "An error occured, please try again")
+                                        }
+                                        
+                                    })
+        
     }
     
     @objc func handleGetDirections(_ sender: UITapGestureRecognizer? = nil) {
